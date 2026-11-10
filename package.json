@@ -1,0 +1,18 @@
+{
+  "name": "luxea-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cd ecommerce-backend && npm start",
+    "dev": "cd ecommerce-backend && npm start",
+    "backend": "cd ecommerce-backend && npm start",
+    "test": "echo \"No root-level tests configured\""
+  },
+  "keywords": ["luxury", "beauty", "fashion", "ecommerce"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

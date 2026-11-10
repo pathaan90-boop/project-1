@@ -1,0 +1,2273 @@
+[
+  {
+    "_id": "660000000000000000000101",
+    "name": "Pathaan Signature Leather Bomber Jacket",
+    "price": 3499,
+    "originalPrice": 4999,
+    "category": "Jackets",
+    "description": "Premium handcrafted faux leather bomber jacket with thermal-insulated lining and custom metal zipper pulls.",
+    "images": [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 45,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Dark Brown"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 128,
+    "featured": true,
+    "createdAt": "2026-11-02T15:08:17.468Z",
+    "id": "660000000000000000000101"
+  },
+  {
+    "_id": "660000000000000000000102",
+    "name": "Vintage Oversized Washed Graphic Tee",
+    "price": 999,
+    "originalPrice": 1499,
+    "category": "T-Shirts",
+    "description": "Heavyweight 240 GSM pure cotton tee with vintage acid wash aesthetic and screen-printed graphics.",
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 80,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      "Faded Charcoal",
+      "White",
+      "Sage Green"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 94,
+    "featured": true,
+    "createdAt": "2026-11-02T15:08:17.468Z",
+    "id": "660000000000000000000102"
+  },
+  {
+    "_id": "660000000000000000000103",
+    "name": "Urban Tactical Multi-Pocket Cargo Pants",
+    "price": 2199,
+    "originalPrice": 2999,
+    "category": "Pants",
+    "description": "Durable ripstop cotton fabric with 6 deep utility pockets, adjustable ankle cuffs, and relaxed street fit.",
+    "images": [
+      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "colors": [
+      "Olive Green",
+      "Tactical Black",
+      "Beige"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 76,
+    "featured": true,
+    "createdAt": "2026-11-02T15:08:17.468Z",
+    "id": "660000000000000000000103"
+  },
+  {
+    "_id": "660000000000000000000104",
+    "name": "Midnight Royal Velvet Kurta Set",
+    "price": 2799,
+    "originalPrice": 3999,
+    "category": "Ethnic",
+    "description": "Rich micro-velvet tailored kurta with mandarin collar and intricate golden thread embroidery.",
+    "images": [
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 20,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Midnight Blue",
+      "Emerald Green",
+      "Jet Black"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 62,
+    "featured": true,
+    "createdAt": "2026-11-02T15:08:17.468Z",
+    "id": "660000000000000000000104"
+  },
+  {
+    "_id": "660000000000000000000105",
+    "name": "Classic Cotton Utility Jacket",
+    "price": 2899,
+    "originalPrice": 3914,
+    "category": "Jackets",
+    "description": "Garment-washed cotton, practical flap pockets, and an adjustable waist.",
+    "images": [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Olive",
+      "Navy"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000105"
+  },
+  {
+    "_id": "660000000000000000000106",
+    "name": "Quilted Weekend Jacket",
+    "price": 3299,
+    "originalPrice": 4454,
+    "category": "Jackets",
+    "description": "Lightweight quilted lining and a neat stand collar for cool-weather layering.",
+    "images": [
+      "https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy",
+      "Brown"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000106"
+  },
+  {
+    "_id": "660000000000000000000107",
+    "name": "Minimal Harrington Jacket",
+    "price": 2599,
+    "originalPrice": 3509,
+    "category": "Jackets",
+    "description": "A clean zip-front profile with ribbed trims and a smooth inner lining.",
+    "images": [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Brown",
+      "Black"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000107"
+  },
+  {
+    "_id": "660000000000000000000108",
+    "name": "Water-Resistant City Jacket",
+    "price": 3199,
+    "originalPrice": 4319,
+    "category": "Jackets",
+    "description": "A lightweight water-resistant shell with a hood that packs away neatly.",
+    "images": [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Olive"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000108"
+  },
+  {
+    "_id": "660000000000000000000109",
+    "name": "Suede-Touch Trucker Jacket",
+    "price": 3799,
+    "originalPrice": 5129,
+    "category": "Jackets",
+    "description": "A soft suede-touch finish with classic chest pockets and metal buttons.",
+    "images": [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Olive",
+      "Navy"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000109"
+  },
+  {
+    "_id": "660000000000000000000110",
+    "name": "Relaxed Denim Jacket",
+    "price": 2499,
+    "originalPrice": 3374,
+    "category": "Jackets",
+    "description": "Mid-weight denim, a relaxed shape, and durable contrast stitching.",
+    "images": [
+      "https://images.unsplash.com/photo-1544923246-77307dd654cb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy",
+      "Brown"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000110"
+  },
+  {
+    "_id": "660000000000000000000111",
+    "name": "Rib-Collar Varsity Jacket",
+    "price": 2999,
+    "originalPrice": 4049,
+    "category": "Jackets",
+    "description": "A comfortable everyday layer finished with striped rib-knit cuffs and collar.",
+    "images": [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Brown",
+      "Black"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000111"
+  },
+  {
+    "_id": "660000000000000000000112",
+    "name": "Lightweight Coach Jacket",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Jackets",
+    "description": "A snap-button front and easy relaxed fit for versatile everyday wear.",
+    "images": [
+      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Olive"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000112"
+  },
+  {
+    "_id": "660000000000000000000113",
+    "name": "Textured Zip-Through Jacket",
+    "price": 2799,
+    "originalPrice": 3779,
+    "category": "Jackets",
+    "description": "Subtle woven texture and a smooth zip front deliver an elevated casual layer.",
+    "images": [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Olive",
+      "Navy"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000113"
+  },
+  {
+    "_id": "660000000000000000000114",
+    "name": "Pathaan Heavyweight Crew T-Shirt",
+    "price": 899,
+    "originalPrice": 1214,
+    "category": "T-Shirts",
+    "description": "Soft heavyweight cotton jersey with a structured crew neck and clean finish.",
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Charcoal"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000114"
+  },
+  {
+    "_id": "660000000000000000000115",
+    "name": "Everyday Essential Cotton Tee",
+    "price": 699,
+    "originalPrice": 944,
+    "category": "T-Shirts",
+    "description": "Breathable combed cotton and a comfortable regular fit for daily wear.",
+    "images": [
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Charcoal",
+      "Sage"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000115"
+  },
+  {
+    "_id": "660000000000000000000116",
+    "name": "Relaxed Drop-Shoulder T-Shirt",
+    "price": 1099,
+    "originalPrice": 1484,
+    "category": "T-Shirts",
+    "description": "A contemporary roomy cut with dropped shoulders and a substantial feel.",
+    "images": [
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Sage",
+      "White"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000116"
+  },
+  {
+    "_id": "660000000000000000000117",
+    "name": "Minimal Chest-Logo T-Shirt",
+    "price": 799,
+    "originalPrice": 1079,
+    "category": "T-Shirts",
+    "description": "A small tonal chest mark keeps this smooth cotton tee understated.",
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000117"
+  },
+  {
+    "_id": "660000000000000000000118",
+    "name": "Classic Striped Cotton T-Shirt",
+    "price": 999,
+    "originalPrice": 1349,
+    "category": "T-Shirts",
+    "description": "Yarn-dyed stripes and soft cotton jersey create an easy weekend staple.",
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Charcoal"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000118"
+  },
+  {
+    "_id": "660000000000000000000119",
+    "name": "Longline Everyday T-Shirt",
+    "price": 899,
+    "originalPrice": 1214,
+    "category": "T-Shirts",
+    "description": "A slightly longer hem and soft stretch cotton give this tee an easy drape.",
+    "images": [
+      "https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Charcoal",
+      "Sage"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000119"
+  },
+  {
+    "_id": "660000000000000000000120",
+    "name": "Ribbed Cotton Henley T-Shirt",
+    "price": 1199,
+    "originalPrice": 1619,
+    "category": "T-Shirts",
+    "description": "Textured rib-knit cotton and a three-button placket add a refined detail.",
+    "images": [
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Sage",
+      "White"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000120"
+  },
+  {
+    "_id": "660000000000000000000121",
+    "name": "Vintage Print Graphic T-Shirt",
+    "price": 1099,
+    "originalPrice": 1484,
+    "category": "T-Shirts",
+    "description": "A soft-washed cotton tee with an original vintage-inspired front graphic.",
+    "images": [
+      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000121"
+  },
+  {
+    "_id": "660000000000000000000122",
+    "name": "Performance Quick-Dry T-Shirt",
+    "price": 1299,
+    "originalPrice": 1754,
+    "category": "T-Shirts",
+    "description": "Lightweight moisture-wicking fabric keeps active days comfortable.",
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Charcoal"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000122"
+  },
+  {
+    "_id": "660000000000000000000123",
+    "name": "Tailored Slim-Fit Chinos",
+    "price": 1799,
+    "originalPrice": 2429,
+    "category": "Pants",
+    "description": "Stretch cotton twill and a neat tapered leg make these chinos easy to dress up.",
+    "images": [
+      "https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Olive",
+      "Navy"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000123"
+  },
+  {
+    "_id": "660000000000000000000124",
+    "name": "Relaxed Everyday Cotton Trousers",
+    "price": 1899,
+    "originalPrice": 2564,
+    "category": "Pants",
+    "description": "A soft cotton blend, straight leg, and flexible waistband for all-day comfort.",
+    "images": [
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Navy",
+      "Beige"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000124"
+  },
+  {
+    "_id": "660000000000000000000125",
+    "name": "Pleated Modern Formal Trousers",
+    "price": 2499,
+    "originalPrice": 3374,
+    "category": "Pants",
+    "description": "A refined front pleat and smooth suiting fabric create a polished silhouette.",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Beige",
+      "Black"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000125"
+  },
+  {
+    "_id": "660000000000000000000126",
+    "name": "Lightweight Linen-Blend Pants",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Pants",
+    "description": "Breathable linen-blend fabric and a relaxed cut suit warmer days.",
+    "images": [
+      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Black",
+      "Olive"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000126"
+  },
+  {
+    "_id": "660000000000000000000127",
+    "name": "Tapered Stretch Chinos",
+    "price": 1899,
+    "originalPrice": 2564,
+    "category": "Pants",
+    "description": "Comfort stretch twill with a tapered ankle and clean, versatile styling.",
+    "images": [
+      "https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Olive",
+      "Navy"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000127"
+  },
+  {
+    "_id": "660000000000000000000128",
+    "name": "Easy-Wear Drawstring Trousers",
+    "price": 1599,
+    "originalPrice": 2159,
+    "category": "Pants",
+    "description": "A soft woven fabric and adjustable drawstring waist keep off-duty dressing simple.",
+    "images": [
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Navy",
+      "Beige"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000128"
+  },
+  {
+    "_id": "660000000000000000000129",
+    "name": "Straight-Leg Workwear Pants",
+    "price": 2199,
+    "originalPrice": 2969,
+    "category": "Pants",
+    "description": "Durable cotton canvas, reinforced seams, and roomy utility pockets.",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Beige",
+      "Black"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000129"
+  },
+  {
+    "_id": "660000000000000000000130",
+    "name": "Textured Smart-Casual Trousers",
+    "price": 2299,
+    "originalPrice": 3104,
+    "category": "Pants",
+    "description": "Subtle textured fabric and a clean front move easily from desk to dinner.",
+    "images": [
+      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Black",
+      "Olive"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000130"
+  },
+  {
+    "_id": "660000000000000000000131",
+    "name": "Relaxed Weekend Cargo Pants",
+    "price": 2099,
+    "originalPrice": 2834,
+    "category": "Pants",
+    "description": "A relaxed fit with practical pockets and an adjustable hem for everyday use.",
+    "images": [
+      "https://images.unsplash.com/photo-1517438476312-10d79c077509?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Olive",
+      "Navy"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000131"
+  },
+  {
+    "_id": "660000000000000000000132",
+    "name": "Classic Cotton Kurta",
+    "price": 1499,
+    "originalPrice": 2024,
+    "category": "Ethnic",
+    "description": "A breathable cotton kurta with a clean band collar and understated button placket.",
+    "images": [
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Ivory",
+      "Emerald"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000132"
+  },
+  {
+    "_id": "660000000000000000000133",
+    "name": "Textured Festive Kurta",
+    "price": 2299,
+    "originalPrice": 3104,
+    "category": "Ethnic",
+    "description": "A soft textured weave and refined detailing make this an easy occasion choice.",
+    "images": [
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Emerald",
+      "Black"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000133"
+  },
+  {
+    "_id": "660000000000000000000134",
+    "name": "Embroidered Celebration Kurta",
+    "price": 2599,
+    "originalPrice": 3509,
+    "category": "Ethnic",
+    "description": "Fine tonal embroidery adds a considered finish to this festive-ready kurta.",
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Midnight Blue"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000134"
+  },
+  {
+    "_id": "660000000000000000000135",
+    "name": "Linen-Blend Summer Kurta",
+    "price": 1899,
+    "originalPrice": 2564,
+    "category": "Ethnic",
+    "description": "Airy linen-blend fabric and a relaxed silhouette keep warm-weather dressing easy.",
+    "images": [
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Midnight Blue",
+      "Ivory"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000135"
+  },
+  {
+    "_id": "660000000000000000000136",
+    "name": "Printed Everyday Kurta",
+    "price": 1699,
+    "originalPrice": 2294,
+    "category": "Ethnic",
+    "description": "A subtle all-over print and lightweight cotton feel work for everyday occasions.",
+    "images": [
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Ivory",
+      "Emerald"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000136"
+  },
+  {
+    "_id": "660000000000000000000137",
+    "name": "Straight-Fit Occasion Kurta",
+    "price": 2199,
+    "originalPrice": 2969,
+    "category": "Ethnic",
+    "description": "A crisp straight fit and neat mandarin collar create a timeless occasion look.",
+    "images": [
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Emerald",
+      "Black"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000137"
+  },
+  {
+    "_id": "660000000000000000000138",
+    "name": "Festive Kurta with Jacket Set",
+    "price": 3499,
+    "originalPrice": 4724,
+    "category": "Ethnic",
+    "description": "A coordinated kurta and lightweight jacket set for a complete celebration look.",
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Black",
+      "Midnight Blue"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000138"
+  },
+  {
+    "_id": "660000000000000000000139",
+    "name": "Minimal Band-Collar Kurta",
+    "price": 1599,
+    "originalPrice": 2159,
+    "category": "Ethnic",
+    "description": "A clean, minimal profile in soft cotton with a comfortable straight cut.",
+    "images": [
+      "https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Midnight Blue",
+      "Ivory"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000139"
+  },
+  {
+    "_id": "660000000000000000000140",
+    "name": "Royal Jacquard Kurta",
+    "price": 2899,
+    "originalPrice": 3914,
+    "category": "Ethnic",
+    "description": "A subtle jacquard weave and tailored details bring quiet polish to special events.",
+    "images": [
+      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Ivory",
+      "Emerald"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000140"
+  },
+  {
+    "_id": "660000000000000000000141",
+    "name": "Tailored Oxford Button-Down Shirt",
+    "price": 1799,
+    "originalPrice": 2429,
+    "category": "Shirts",
+    "description": "Durable Oxford cotton and a button-down collar deliver a sharp everyday staple.",
+    "images": [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 20,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White",
+      "Sky Blue"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 24,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:00.000Z",
+    "id": "660000000000000000000141"
+  },
+  {
+    "_id": "660000000000000000000142",
+    "name": "Breathable Linen-Blend Shirt",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Shirts",
+    "description": "A lightweight linen blend with a relaxed drape for effortless warm-weather style.",
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Sky Blue",
+      "Navy"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000142"
+  },
+  {
+    "_id": "660000000000000000000143",
+    "name": "Slim-Fit Poplin Dress Shirt",
+    "price": 1899,
+    "originalPrice": 2564,
+    "category": "Shirts",
+    "description": "Smooth cotton poplin and a clean slim fit make this an easy formal essential.",
+    "images": [
+      "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy",
+      "Olive"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000143"
+  },
+  {
+    "_id": "660000000000000000000144",
+    "name": "Classic Checked Twill Shirt",
+    "price": 1699,
+    "originalPrice": 2294,
+    "category": "Shirts",
+    "description": "Soft brushed twill and a timeless check pattern work well layered or on their own.",
+    "images": [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Olive",
+      "White"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000144"
+  },
+  {
+    "_id": "660000000000000000000145",
+    "name": "Grandad-Collar Cotton Shirt",
+    "price": 1599,
+    "originalPrice": 2159,
+    "category": "Shirts",
+    "description": "A crisp collarless design and breathable cotton bring a modern casual finish.",
+    "images": [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White",
+      "Sky Blue"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000145"
+  },
+  {
+    "_id": "660000000000000000000146",
+    "name": "Striped Resort-Collar Shirt",
+    "price": 1799,
+    "originalPrice": 2429,
+    "category": "Shirts",
+    "description": "Lightweight woven cotton and a relaxed resort collar bring an easy holiday feel.",
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Sky Blue",
+      "Navy"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000146"
+  },
+  {
+    "_id": "660000000000000000000147",
+    "name": "Brushed Flannel Check Shirt",
+    "price": 1899,
+    "originalPrice": 2564,
+    "category": "Shirts",
+    "description": "Warm brushed cotton flannel with a comfortable fit for cool-weather layering.",
+    "images": [
+      "https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Navy",
+      "Olive"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000147"
+  },
+  {
+    "_id": "660000000000000000000148",
+    "name": "Textured Cuban-Collar Shirt",
+    "price": 1699,
+    "originalPrice": 2294,
+    "category": "Shirts",
+    "description": "A softly textured weave and open collar make this a versatile summer shirt.",
+    "images": [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Olive",
+      "White"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000148"
+  },
+  {
+    "_id": "660000000000000000000149",
+    "name": "Essential Formal Cotton Shirt",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Shirts",
+    "description": "A smooth cotton finish, structured collar, and tailored cut for occasion dressing.",
+    "images": [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "White",
+      "Sky Blue"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000149"
+  },
+  {
+    "_id": "660000000000000000000150",
+    "name": "Chambray Button-Down Shirt",
+    "price": 1799,
+    "originalPrice": 2429,
+    "category": "Shirts",
+    "description": "Soft chambray texture and classic buttons make this a dependable casual layer.",
+    "images": [
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      "Sky Blue",
+      "Navy"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000150"
+  },
+  {
+    "_id": "660000000000000000000151",
+    "name": "Classic Straight-Fit Indigo Jeans",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Jeans",
+    "description": "Mid-wash denim and a timeless straight leg deliver an easy everyday fit.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 20,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Indigo",
+      "Washed Black"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 24,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:00.000Z",
+    "id": "660000000000000000000151"
+  },
+  {
+    "_id": "660000000000000000000152",
+    "name": "Slim-Fit Stretch Denim Jeans",
+    "price": 2199,
+    "originalPrice": 2969,
+    "category": "Jeans",
+    "description": "Comfort-stretch denim follows a clean slim line without restricting movement.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Washed Black",
+      "Light Blue"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000152"
+  },
+  {
+    "_id": "660000000000000000000153",
+    "name": "Relaxed Tapered Blue Jeans",
+    "price": 2299,
+    "originalPrice": 3104,
+    "category": "Jeans",
+    "description": "A relaxed top block narrows gently at the ankle for a modern silhouette.",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Light Blue",
+      "Dark Blue"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000153"
+  },
+  {
+    "_id": "660000000000000000000154",
+    "name": "Washed-Black Everyday Jeans",
+    "price": 2099,
+    "originalPrice": 2834,
+    "category": "Jeans",
+    "description": "Soft washed-black denim and versatile styling make these a wardrobe staple.",
+    "images": [
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Dark Blue",
+      "Indigo"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000154"
+  },
+  {
+    "_id": "660000000000000000000155",
+    "name": "Light-Wash Weekend Jeans",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Jeans",
+    "description": "An easy light wash and comfortable straight fit bring a laid-back finish.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Indigo",
+      "Washed Black"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000155"
+  },
+  {
+    "_id": "660000000000000000000156",
+    "name": "Dark Indigo Regular-Fit Jeans",
+    "price": 2199,
+    "originalPrice": 2969,
+    "category": "Jeans",
+    "description": "Deep indigo denim, clean stitching, and a dependable regular fit.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Washed Black",
+      "Light Blue"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000156"
+  },
+  {
+    "_id": "660000000000000000000157",
+    "name": "Vintage Fade Denim Jeans",
+    "price": 2399,
+    "originalPrice": 3239,
+    "category": "Jeans",
+    "description": "Subtle vintage fading gives this durable cotton denim a lived-in look.",
+    "images": [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Light Blue",
+      "Dark Blue"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000157"
+  },
+  {
+    "_id": "660000000000000000000158",
+    "name": "Utility Pocket Denim Jeans",
+    "price": 2499,
+    "originalPrice": 3374,
+    "category": "Jeans",
+    "description": "Classic denim with practical utility pockets and reinforced construction.",
+    "images": [
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Dark Blue",
+      "Indigo"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000158"
+  },
+  {
+    "_id": "660000000000000000000159",
+    "name": "Comfort Waist Straight Jeans",
+    "price": 2299,
+    "originalPrice": 3104,
+    "category": "Jeans",
+    "description": "Soft stretch denim and a flexible waistband keep long days comfortable.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Indigo",
+      "Washed Black"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000159"
+  },
+  {
+    "_id": "660000000000000000000160",
+    "name": "Raw-Edge Relaxed Denim Jeans",
+    "price": 2599,
+    "originalPrice": 3509,
+    "category": "Jeans",
+    "description": "A relaxed cut and subtle raw-edge details give these jeans a modern character.",
+    "images": [
+      "https://images.unsplash.com/photo-1542272454315-4c01d7abdf4a?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "38"
+    ],
+    "colors": [
+      "Washed Black",
+      "Light Blue"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000160"
+  },
+  {
+    "_id": "660000000000000000000161",
+    "name": "Everyday Low-Top Sneakers",
+    "price": 2499,
+    "originalPrice": 3374,
+    "category": "Shoes",
+    "description": "A cushioned footbed and versatile low-top profile make these easy daily sneakers.",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 20,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 24,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:00.000Z",
+    "id": "660000000000000000000161"
+  },
+  {
+    "_id": "660000000000000000000162",
+    "name": "Classic White Court Sneakers",
+    "price": 2799,
+    "originalPrice": 3779,
+    "category": "Shoes",
+    "description": "Clean court-inspired styling with a supportive sole and smooth upper.",
+    "images": [
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Black",
+      "Navy"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000162"
+  },
+  {
+    "_id": "660000000000000000000163",
+    "name": "Lightweight Knit Running Shoes",
+    "price": 3299,
+    "originalPrice": 4454,
+    "category": "Shoes",
+    "description": "A breathable knit upper and responsive cushioning for active everyday wear.",
+    "images": [
+      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Navy",
+      "Tan"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000163"
+  },
+  {
+    "_id": "660000000000000000000164",
+    "name": "Minimal Leather-Look Trainers",
+    "price": 2999,
+    "originalPrice": 4049,
+    "category": "Shoes",
+    "description": "A clean, understated trainer with a comfortable lining and durable outsole.",
+    "images": [
+      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Tan",
+      "White"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000164"
+  },
+  {
+    "_id": "660000000000000000000165",
+    "name": "Urban High-Top Sneakers",
+    "price": 3199,
+    "originalPrice": 4319,
+    "category": "Shoes",
+    "description": "A supportive high-top shape and padded collar bring extra everyday comfort.",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000165"
+  },
+  {
+    "_id": "660000000000000000000166",
+    "name": "Casual Canvas Lace-Up Shoes",
+    "price": 1799,
+    "originalPrice": 2429,
+    "category": "Shoes",
+    "description": "Lightweight canvas and a flexible sole make these a relaxed warm-weather choice.",
+    "images": [
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Black",
+      "Navy"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000166"
+  },
+  {
+    "_id": "660000000000000000000167",
+    "name": "Weekend Slip-On Sneakers",
+    "price": 1999,
+    "originalPrice": 2699,
+    "category": "Shoes",
+    "description": "An easy slip-on design with a cushioned insole for convenient everyday wear.",
+    "images": [
+      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Navy",
+      "Tan"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000167"
+  },
+  {
+    "_id": "660000000000000000000168",
+    "name": "Classic Suede-Touch Loafers",
+    "price": 2899,
+    "originalPrice": 3914,
+    "category": "Shoes",
+    "description": "A refined loafer profile with a soft suede-touch upper for smart-casual outfits.",
+    "images": [
+      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Tan",
+      "White"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000168"
+  },
+  {
+    "_id": "660000000000000000000169",
+    "name": "Comfort Walking Sneakers",
+    "price": 2699,
+    "originalPrice": 3644,
+    "category": "Shoes",
+    "description": "A supportive cushioned sole and breathable upper are made for long walks.",
+    "images": [
+      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "White",
+      "Black"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000169"
+  },
+  {
+    "_id": "660000000000000000000170",
+    "name": "Textured Everyday Trainers",
+    "price": 2399,
+    "originalPrice": 3239,
+    "category": "Shoes",
+    "description": "A subtle textured upper and grippy sole add function to a clean trainer shape.",
+    "images": [
+      "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "11"
+    ],
+    "colors": [
+      "Black",
+      "Navy"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000170"
+  },
+  {
+    "_id": "660000000000000000000171",
+    "name": "Minimal Dial Everyday Watch",
+    "price": 3499,
+    "originalPrice": 4724,
+    "category": "Accessories",
+    "description": "A clean minimal dial, comfortable strap, and versatile everyday proportions.",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 20,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Black",
+      "Brown"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 24,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:00.000Z",
+    "id": "660000000000000000000171"
+  },
+  {
+    "_id": "660000000000000000000172",
+    "name": "Classic Reversible Leather Belt",
+    "price": 1299,
+    "originalPrice": 1754,
+    "category": "Accessories",
+    "description": "A polished buckle and reversible finish make this belt easy to style.",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 23,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Brown",
+      "Silver"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 31,
+    "featured": true,
+    "createdAt": "2026-11-06T12:00:01.000Z",
+    "id": "660000000000000000000172"
+  },
+  {
+    "_id": "660000000000000000000173",
+    "name": "Slim Genuine-Leather Card Holder",
+    "price": 999,
+    "originalPrice": 1349,
+    "category": "Accessories",
+    "description": "A compact profile with neatly arranged slots for everyday essentials.",
+    "images": [
+      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 26,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Silver",
+      "Navy"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 38,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:02.000Z",
+    "id": "660000000000000000000173"
+  },
+  {
+    "_id": "660000000000000000000174",
+    "name": "Textured Formal Tie",
+    "price": 899,
+    "originalPrice": 1214,
+    "category": "Accessories",
+    "description": "A refined woven texture and versatile width for work and occasion dressing.",
+    "images": [
+      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 29,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Navy",
+      "Black"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 45,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:03.000Z",
+    "id": "660000000000000000000174"
+  },
+  {
+    "_id": "660000000000000000000175",
+    "name": "Polarized Wayfarer Sunglasses",
+    "price": 1499,
+    "originalPrice": 2024,
+    "category": "Accessories",
+    "description": "Classic wayfarer-inspired frames with polarized lenses for bright days.",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 32,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Black",
+      "Brown"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 52,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:04.000Z",
+    "id": "660000000000000000000175"
+  },
+  {
+    "_id": "660000000000000000000176",
+    "name": "Everyday Cotton Baseball Cap",
+    "price": 699,
+    "originalPrice": 944,
+    "category": "Accessories",
+    "description": "Breathable cotton twill with an adjustable back strap for an easy fit.",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 35,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Brown",
+      "Silver"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 59,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:05.000Z",
+    "id": "660000000000000000000176"
+  },
+  {
+    "_id": "660000000000000000000177",
+    "name": "Premium Ribbed Cotton Socks Set",
+    "price": 499,
+    "originalPrice": 674,
+    "category": "Accessories",
+    "description": "Soft combed cotton with a comfortable ribbed cuff in everyday colors.",
+    "images": [
+      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 38,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Silver",
+      "Navy"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 66,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:06.000Z",
+    "id": "660000000000000000000177"
+  },
+  {
+    "_id": "660000000000000000000178",
+    "name": "Compact Canvas Crossbody Bag",
+    "price": 1799,
+    "originalPrice": 2429,
+    "category": "Accessories",
+    "description": "A durable canvas finish and adjustable strap keep daily carry practical.",
+    "images": [
+      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 41,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Navy",
+      "Black"
+    ],
+    "rating": 4.8,
+    "reviewsCount": 73,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:07.000Z",
+    "id": "660000000000000000000178"
+  },
+  {
+    "_id": "660000000000000000000179",
+    "name": "Woven Reversible Casual Belt",
+    "price": 999,
+    "originalPrice": 1349,
+    "category": "Accessories",
+    "description": "A comfortable woven design with an adjustable fit for casual outfits.",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 44,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Black",
+      "Brown"
+    ],
+    "rating": 4.9,
+    "reviewsCount": 80,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:08.000Z",
+    "id": "660000000000000000000179"
+  },
+  {
+    "_id": "660000000000000000000180",
+    "name": "Structured Everyday Wallet",
+    "price": 1199,
+    "originalPrice": 1619,
+    "category": "Accessories",
+    "description": "A slim-fold profile with practical card storage and a neat finish.",
+    "images": [
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=80"
+    ],
+    "stock": 47,
+    "inStock": true,
+    "sizes": [
+      "One Size"
+    ],
+    "colors": [
+      "Brown",
+      "Silver"
+    ],
+    "rating": 4.7,
+    "reviewsCount": 87,
+    "featured": false,
+    "createdAt": "2026-11-06T12:00:09.000Z",
+    "id": "660000000000000000000180"
+  }
+]

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111111">
+  <title>Client Dashboard | Pathaan Atelier</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{color-scheme:dark;--background:#111;--surface:#1c1c1c;--surface-soft:#222;--text:#f5f5f5;--muted:#a1a1aa;--gold:#d8b576;--border:rgba(255,255,255,.1)}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,rgba(216,181,118,.13),transparent 55%),var(--background);color:var(--text);font:15px Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea{font:inherit}
+    .page-shell{width:min(1080px,100% - 36px);margin:0 auto;padding:30px 0 56px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:34px}
+    .brand{font-family:Georgia,serif;font-size:20px;letter-spacing:1.2px;font-weight:700}
+    .brand span{color:var(--gold)}
+    .top-actions{display:flex;gap:10px}
+    .top-link,.logout-button,.photo-button,.save-button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:10px;padding:11px 15px;font-weight:700;transition:filter .2s,border-color .2s,transform .2s}
+    .top-link,.logout-button,.photo-button{border:1px solid var(--border);background:rgba(255,255,255,.025);color:var(--text)}
+    .top-link:hover,.logout-button:hover,.photo-button:hover{border-color:var(--gold);color:var(--gold)}
+    .logout-button,.photo-button{cursor:pointer}
+    .page-heading{margin-bottom:20px}
+    .eyebrow{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:0 0 10px}
+    h1{font-family:Georgia,serif;font-size:clamp(30px,5vw,42px);font-weight:500;letter-spacing:.2px;margin:0 0 8px}
+    .page-intro{color:var(--muted);line-height:1.6;margin:0}
+    .dashboard-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(270px,.85fr);gap:18px}
+    .panel{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 18px 48px rgba(0,0,0,.2)}
+    .profile-summary{display:flex;align-items:center;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--border);margin-bottom:22px}
+    .avatar-wrap{position:relative;flex:0 0 auto}
+    .avatar{display:block;width:104px;height:104px;border:2px solid var(--gold);border-radius:50%;object-fit:cover;background:var(--surface-soft);box-shadow:0 0 0 6px rgba(216,181,118,.08)}
+    .avatar-camera{position:absolute;right:0;bottom:0;width:34px;height:34px;border:2px solid var(--background);border-radius:50%;background:var(--gold);color:#171717;display:grid;place-items:center;cursor:pointer}
+    .avatar-camera:hover{filter:brightness(1.08)}
+    .profile-name{font-family:Georgia,serif;font-size:25px;margin:0 0 5px}
+    .profile-email{color:var(--muted);margin:0;overflow-wrap:anywhere}
+    .photo-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+    .photo-button{padding:9px 12px;font-size:13px}
+    .camera-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.78)}
+    .camera-overlay.active{display:flex}
+    .camera-dialog{width:min(520px,100%);padding:22px;border:1px solid var(--border);border-radius:18px;background:var(--surface);box-shadow:0 24px 70px rgba(0,0,0,.55)}
+    .camera-dialog-header,.camera-dialog-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .camera-dialog-title{font-family:Georgia,serif;font-size:21px;font-weight:500;margin:0}
+    .camera-close{width:36px;height:36px;border:1px solid var(--border);border-radius:9px;background:transparent;color:var(--text);cursor:pointer}
+    .camera-preview{display:block;width:100%;aspect-ratio:4/3;margin:16px 0 10px;border-radius:12px;background:#080808;object-fit:cover;transform:scaleX(-1)}
+    .camera-status{min-height:20px;margin:0 0 14px;color:var(--muted);font-size:13px;line-height:1.5}
+    .camera-dialog-actions{justify-content:flex-end}
+    .camera-capture{border:0;background:var(--gold);color:#171717}
+    .camera-dialog-actions .photo-button{min-width:106px}
+    .camera-dialog-actions button:disabled{opacity:.55;cursor:wait}
+    .panel-title{font-size:16px;margin:0 0 6px}
+    .panel-description{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 18px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field{display:flex;flex-direction:column;gap:7px}
+    .field-full{grid-column:1/-1}
+    .field label{font-size:12px;color:#d4d4d8;font-weight:700}
+    .field input,.field textarea{width:100%;border:1px solid var(--border);border-radius:9px;padding:12px;background:#111;color:var(--text);resize:vertical}
+    .field input:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+    .save-button{margin-top:16px;border:0;background:var(--gold);color:#171717;cursor:pointer}
+    .save-button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+    .save-button:disabled,.photo-button:disabled{opacity:.6;cursor:wait;transform:none}
+    .status{min-height:18px;color:var(--muted);font-size:12px;line-height:1.5;margin:10px 0 0}
+    .quick-links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .quick-link{min-height:88px;padding:16px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.02);transition:border-color .2s,transform .2s,background .2s}
+    .quick-link:hover{border-color:rgba(216,181,118,.65);background:rgba(216,181,118,.055);transform:translateY(-2px)}
+    .quick-link i{font-size:16px;color:var(--gold);margin-bottom:10px}
+    .quick-link strong{display:block;font-size:13px}
+    .photo-input{display:none}
+    [hidden]{display:none!important}
+    @media(max-width:720px){.dashboard-layout{grid-template-columns:1fr}.profile-panel{grid-row:auto}}
+    @media(max-width:480px){.page-shell{width:min(100% - 28px,1080px);padding-top:20px}.topbar{margin-bottom:27px}.brand{font-size:17px}.top-link,.logout-button{padding:10px 11px;font-size:12px}.panel{padding:19px}.profile-summary{align-items:flex-start;gap:15px}.avatar{width:82px;height:82px}.profile-name{font-size:21px}.form-grid{grid-template-columns:1fr}.field-full{grid-column:auto}.quick-links{gap:8px}.quick-link{padding:13px;min-height:82px}}
+    @media(max-width:480px){.camera-dialog{padding:17px}.camera-dialog-actions .photo-button{min-width:0;flex:1}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/shop.html" aria-label="Pathaan Atelier home">PATHAAN <span>ATELIER</span></a>
+      <nav class="top-actions" aria-label="Dashboard navigation">
+        <a class="top-link" href="/shop.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span>Shop</span></a>
+        <button class="logout-button" id="logoutButton" type="button"><i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i> Logout</button>
+      </nav>
+    </header>
+
+    <div class="page-heading">
+      <p class="eyebrow">Your account</p>
+      <h1>Client Dashboard</h1>
+      <p class="page-intro">Welcome back. Manage your profile and pick up where you left off.</p>
+    </div>
+
+    <div class="dashboard-layout">
+      <section class="panel profile-panel" aria-labelledby="profileHeading">
+        <div class="profile-summary">
+          <div class="avatar-wrap">
+            <img class="avatar" id="profileImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23222'/%3E%3Ccircle cx='50' cy='38' r='19' fill='%23a1a1aa'/%3E%3Cpath d='M15 100c2-24 15-37 35-37s33 13 35 37' fill='%23a1a1aa'/%3E%3C/svg%3E" alt="Your profile photo">
+            <button class="avatar-camera" id="cameraPhotoButton" type="button" aria-label="Take a profile photo" title="Take a profile photo">
+              <i class="fa-solid fa-camera" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div>
+            <p class="eyebrow">Member profile</p>
+            <h2 class="profile-name" id="username">Your account</h2>
+            <p class="profile-email" id="accountEmail"></p>
+            <div class="photo-actions">
+              <button class="photo-button" id="takePhotoButton" type="button"><i class="fa-solid fa-camera" aria-hidden="true"></i> Camera</button>
+              <button class="photo-button" id="galleryPhotoButton" type="button"><i class="fa-regular fa-images" aria-hidden="true"></i> Gallery</button>
+            </div>
+            <input class="photo-input" id="cameraPhotoInput" type="file" accept="image/*" capture="user">
+            <input class="photo-input" id="galleryPhotoInput" type="file" accept="image/*">
+            <p class="status" id="photoStatus" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <h2 class="panel-title" id="profileHeading">Personal details</h2>
+        <p class="panel-description">Keep your contact details up to date for your account.</p>
+        <form id="profileForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number">
+            </div>
+            <div class="field field-full">
+              <label for="address">Delivery address</label>
+              <textarea id="address" name="address" rows="3" autocomplete="street-address" placeholder="Your delivery address"></textarea>
+            </div>
+          </div>
+          <button class="save-button" id="saveProfileButton" type="submit"><i class="fa-solid fa-check" aria-hidden="true"></i> Save details</button>
+          <p class="status" id="profileStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel" aria-labelledby="shortcutsHeading">
+        <h2 class="panel-title" id="shortcutsHeading">Quick access</h2>
+        <p class="panel-description">Your essentials, all in one place.</p>
+        <div class="quick-links">
+          <a class="quick-link" href="/my-orders.html"><i class="fa-solid fa-box-open" aria-hidden="true"></i><strong>My Orders</strong></a>
+          <a class="quick-link" href="/cart.html"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i><strong>My Cart</strong></a>
+          <a class="quick-link" href="/settings.html"><i class="fa-solid fa-sliders" aria-hidden="true"></i><strong>Settings</strong></a>
+          <a class="quick-link" href="/faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i><strong>Help &amp; Support</strong></a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="camera-overlay" id="cameraOverlay" aria-hidden="true">
+    <section class="camera-dialog" role="dialog" aria-modal="true" aria-labelledby="cameraDialogTitle">
+      <div class="camera-dialog-header">
+        <h2 class="camera-dialog-title" id="cameraDialogTitle">Take a profile photo</h2>
+        <button class="camera-close" id="closeCameraButton" type="button" aria-label="Close camera"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+      <video class="camera-preview" id="cameraPreview" autoplay muted playsinline aria-label="Live camera preview"></video>
+      <p class="camera-status" id="cameraStatus" role="status" aria-live="polite">Starting camera…</p>
+      <div class="camera-dialog-actions">
+        <button class="photo-button" id="cancelCameraButton" type="button">Cancel</button>
+        <button class="photo-button camera-capture" id="captureCameraButton" type="button" disabled><i class="fa-solid fa-camera" aria-hidden="true"></i> Capture photo</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="/toast.js"></script>
+  <script>
+    const defaultProfileImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23222'/%3E%3Ccircle cx='50' cy='38' r='19' fill='%23a1a1aa'/%3E%3Cpath d='M15 100c2-24 15-37 35-37s33 13 35 37' fill='%23a1a1aa'/%3E%3C/svg%3E";
+    let savedProfileImage = defaultProfileImage;
+    let cameraStream = null;
+    let cameraTrigger = null;
+    let cameraRequestId = 0;
+
+    function showStatus(id, message, isError = false) {
+      const status = document.getElementById(id);
+      status.textContent = message;
+      status.style.color = isError ? "#fca5a5" : "";
+    }
+
+    function setProfileImage(image) {
+      document.getElementById("profileImage").src = image
+        ? new URL(image, API_BASE).href
+        : defaultProfileImage;
+    }
+
+    async function loadProfile() {
+      if (!requireLogin()) return;
+      try {
+        const response = await fetch(API_BASE + "/api/profile", { headers: getAuthHeader() });
+        const user = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(user.msg || `Could not load profile (${response.status})`);
+        document.getElementById("username").textContent = user.name || "Your account";
+        document.getElementById("accountEmail").textContent = user.email || "";
+        document.getElementById("phone").value = user.phone || "";
+        document.getElementById("address").value = user.address || "";
+        savedProfileImage = user.profileImage || defaultProfileImage;
+        setProfileImage(savedProfileImage);
+      } catch (error) {
+        showToast(error.message || "Could not load your profile.", "error");
+      }
+    }
+
+    async function uploadProfilePhoto(file, input) {
+      if (!file) return;
+
+      const previewUrl = URL.createObjectURL(file);
+      const buttons = [
+        document.getElementById("cameraPhotoButton"),
+        document.getElementById("takePhotoButton"),
+        document.getElementById("galleryPhotoButton")
+      ];
+      setProfileImage(previewUrl);
+      showStatus("photoStatus", "Uploading and saving your photo…");
+      buttons.forEach(button => { button.disabled = true; });
+      try {
+        const formData = new FormData();
+        formData.append("profileImage", file);
+        const response = await fetch(API_BASE + "/api/profile/image", {
+          method: "POST",
+          headers: getAuthHeader(),
+          body: formData
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.msg || `Could not save your photo (${response.status})`);
+        savedProfileImage = result.profileImage || defaultProfileImage;
+        setProfileImage(savedProfileImage);
+        localStorage.setItem("userAvatar", savedProfileImage);
+        showStatus("photoStatus", result.msg || "Profile photo saved to your account.");
+        showToast(result.msg || "Profile photo saved to your account.", "success");
+      } catch (error) {
+        setProfileImage(savedProfileImage);
+        showStatus("photoStatus", error.message || "Could not save your photo.", true);
+        showToast(error.message || "Could not save your photo.", "error");
+      } finally {
+        URL.revokeObjectURL(previewUrl);
+        if (input) input.value = "";
+        buttons.forEach(button => { button.disabled = false; });
+      }
+    }
+
+    async function openCamera() {
+      if (!requireLogin()) return;
+      const requestId = ++cameraRequestId;
+      cameraTrigger = document.activeElement;
+      const overlay = document.getElementById("cameraOverlay");
+      const video = document.getElementById("cameraPreview");
+      const captureButton = document.getElementById("captureCameraButton");
+      overlay.classList.add("active");
+      overlay.setAttribute("aria-hidden", "false");
+      captureButton.disabled = true;
+      document.getElementById("cameraStatus").textContent = "Allow camera access to take your photo.";
+      document.getElementById("closeCameraButton").focus();
+
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        closeCamera();
+        showStatus("photoStatus", "Live camera preview is unavailable. Use the device camera or choose a photo from Gallery.");
+        document.getElementById("cameraPhotoInput").click();
+        return;
+      }
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { ideal: "user" } },
+          audio: false
+        });
+        if (requestId !== cameraRequestId) {
+          stream.getTracks().forEach(track => track.stop());
+          return;
+        }
+        cameraStream = stream;
+        video.srcObject = cameraStream;
+        await video.play();
+        if (requestId !== cameraRequestId) return;
+        captureButton.disabled = false;
+        document.getElementById("cameraStatus").textContent = "Position yourself in the frame, then capture your photo.";
+      } catch (error) {
+        if (requestId !== cameraRequestId) return;
+        closeCamera();
+        const messages = {
+          NotAllowedError: "Camera access was blocked. Allow camera permission in your browser settings, or choose a photo from Gallery.",
+          NotFoundError: "No camera was found on this device. You can choose a photo from Gallery.",
+          NotReadableError: "The camera is being used by another app. Close it and try again, or choose a photo from Gallery."
+        };
+        const message = messages[error.name] || `Could not start the camera: ${error.message || "Please try again or choose a photo from Gallery."}`;
+        showStatus("photoStatus", message, true);
+        showToast(message, "error");
+      }
+    }
+
+    function closeCamera() {
+      cameraRequestId += 1;
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+      }
+      const overlay = document.getElementById("cameraOverlay");
+      const video = document.getElementById("cameraPreview");
+      const captureButton = document.getElementById("captureCameraButton");
+      if (video) video.srcObject = null;
+      if (overlay) {
+        overlay.classList.remove("active");
+        overlay.setAttribute("aria-hidden", "true");
+      }
+      if (captureButton) captureButton.disabled = true;
+      if (cameraTrigger && cameraTrigger.isConnected) cameraTrigger.focus();
+      cameraTrigger = null;
+    }
+
+    async function captureProfilePhoto() {
+      const video = document.getElementById("cameraPreview");
+      const captureButton = document.getElementById("captureCameraButton");
+      if (!cameraStream || !video.videoWidth || !video.videoHeight) {
+        document.getElementById("cameraStatus").textContent = "Camera is not ready yet. Please wait a moment.";
+        return;
+      }
+
+      captureButton.disabled = true;
+      const canvas = document.createElement("canvas");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(async blob => {
+        if (!blob) {
+          captureButton.disabled = false;
+          document.getElementById("cameraStatus").textContent = "Could not capture the photo. Please try again.";
+          return;
+        }
+        closeCamera();
+        await uploadProfilePhoto(new File([blob], `profile-${Date.now()}.jpg`, { type: "image/jpeg" }));
+      }, "image/jpeg", 0.9);
+    }
+
+    document.getElementById("profileForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      const button = document.getElementById("saveProfileButton");
+      button.disabled = true;
+      try {
+        const response = await fetch(API_BASE + "/api/profile/update", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json", ...getAuthHeader() },
+          body: JSON.stringify({
+            phone: document.getElementById("phone").value.trim(),
+            address: document.getElementById("address").value.trim()
+          })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.msg || `Could not save profile (${response.status})`);
+        showStatus("profileStatus", result.msg || "Profile details saved.");
+        showToast(result.msg || "Profile details saved.", "success");
+      } catch (error) {
+        showStatus("profileStatus", error.message || "Could not save profile details.", true);
+        showToast(error.message || "Could not save profile details.", "error");
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    document.getElementById("cameraPhotoButton").addEventListener("click", openCamera);
+    document.getElementById("takePhotoButton").addEventListener("click", openCamera);
+    document.getElementById("galleryPhotoButton").addEventListener("click", () => {
+      document.getElementById("galleryPhotoInput").click();
+    });
+    document.getElementById("cameraPhotoInput").addEventListener("change", event => uploadProfilePhoto(event.currentTarget.files[0], event.currentTarget));
+    document.getElementById("galleryPhotoInput").addEventListener("change", event => uploadProfilePhoto(event.currentTarget.files[0], event.currentTarget));
+    document.getElementById("closeCameraButton").addEventListener("click", closeCamera);
+    document.getElementById("cancelCameraButton").addEventListener("click", closeCamera);
+    document.getElementById("captureCameraButton").addEventListener("click", captureProfilePhoto);
+    document.getElementById("cameraOverlay").addEventListener("click", event => {
+      if (event.target.id === "cameraOverlay") closeCamera();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && document.getElementById("cameraOverlay").classList.contains("active")) {
+        closeCamera();
+      }
+    });
+    document.getElementById("logoutButton").addEventListener("click", () => logout());
+
+    loadProfile();
+  </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register - Pathaan Collection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#11100e,#2a241b,#0d0c0a,#211b13);
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+    padding:20px;
+}
+@keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.box{
+    width:100%;
+    max-width:420px;
+    padding:35px 30px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 0 50px rgba(199,164,106,0.18);
+    text-align:center;
+}
+
+.brand-badge{
+    display:inline-block;
+    padding:6px 14px;
+    background:rgba(199,164,106,0.14);
+    border:1px solid rgba(199,164,106,0.38);
+    color:#e4c990;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:15px;
+    text-decoration:none;
+}
+
+h1{color:white;margin-bottom:8px;font-size:26px}
+.subtitle{color:#bbb;font-size:14px;margin-bottom:22px}
+
+.input-group{
+    position:relative;
+    margin-bottom:14px;
+    text-align:left;
+}
+.input-group i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#888;
+    font-size:15px;
+}
+input{
+    width:100%;
+    padding:14px 16px 14px 44px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:12px;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+input:focus{
+    border-color:#d8b576;
+    background:rgba(255,255,255,0.18);
+    box-shadow:0 0 15px rgba(216,181,118,0.24);
+}
+input::placeholder{color:#aaa}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#e1c98e,#c7a46a 58%,#a98245);
+    color:#000;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 4px 20px rgba(199,164,106,0.24);
+}
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(199,164,106,0.38);
+}
+button:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.bottom{margin-top:22px;color:#aaa;font-size:14px}
+.bottom a{color:#e4c990;text-decoration:none;font-weight:bold}
+.bottom a:hover{text-decoration:underline}
+
+.otp-box{display:none}
+.otp-info{color:#ddd;font-size:14px;line-height:1.6;margin-bottom:15px}
+.timer{color:#e4c990;margin-top:14px;font-size:14px}
+.resend{display:none;color:#e4c990;cursor:pointer;margin-top:14px;font-weight:bold}
+.resend:hover{text-decoration:underline}
+
+.dev-otp-alert{
+    background:rgba(199,164,106,0.1);
+    border:1px dashed #c7a46a;
+    color:#e4c990;
+    padding:10px;
+    border-radius:10px;
+    font-size:13px;
+    margin-bottom:15px;
+    display:none;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <a href="/shop" class="brand-badge"><i class="fa-solid fa-crown"></i> PATHAAN COLLECTION</a>
+
+    <!-- REGISTRATION FORM -->
+    <div id="registerSection">
+        <h1>Create Account 🚀</h1>
+        <div class="subtitle">Join Pathaan Collection today 🔥</div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="name" placeholder="Full Name" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-phone"></i>
+            <input type="tel" id="phone" placeholder="Mobile Number (Optional)">
+        </div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" placeholder="Password (Min 6 chars)" required>
+        </div>
+
+        <button id="registerBtn" onclick="register()">CREATE ACCOUNT</button>
+
+        <div class="bottom">Already have an account? <a href="/login">Login</a></div>
+    </div>
+
+    <!-- OTP VERIFICATION FORM -->
+    <div id="otpSection" class="otp-box">
+        <h1>Verify Email 📧</h1>
+        <p class="otp-info">A 6-digit verification code has been sent to your email.</p>
+        
+        <div id="devOtpBox" class="dev-otp-alert"></div>
+
+        <div class="input-group">
+            <i class="fa-solid fa-key"></i>
+            <input type="text" id="otp" placeholder="Enter 6-Digit OTP" maxlength="6" style="text-align:center;letter-spacing:4px;font-size:18px;">
+        </div>
+
+        <button id="verifyBtn" onclick="verifyOTP()">VERIFY & CONTINUE</button>
+
+        <div id="timer" class="timer">Resend OTP in 60 seconds</div>
+        <div id="resend" class="resend" onclick="resendOTP()">Resend OTP Code</div>
+        <div class="bottom"><a href="#" onclick="switchBackToRegister()">Edit details</a></div>
+    </div>
+</div>
+
+<script src="/config.js"></script>
+<script src="/toast.js"></script>
+<script>
+let userEmail = "";
+let timerInterval;
+let timeLeft = 60;
+
+// Check if directed here to verify existing pending email
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get("verify") === "1" && urlParams.get("email")) {
+    userEmail = decodeURIComponent(urlParams.get("email"));
+    document.getElementById("registerSection").style.display = "none";
+    document.getElementById("otpSection").style.display = "block";
+    startTimer();
+}
+
+async function register() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value;
+    const btn = document.getElementById("registerBtn");
+
+    if (!name || !email || !password) {
+        showToast("Please fill all required fields", "error");
+        return;
+    }
+
+    if (password.length < 6) {
+        showToast("Password must be at least 6 characters", "error");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "SENDING OTP...";
+
+    try {
+        const response = await fetch(API_BASE + "/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password, phone })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.autoLogin && result.token) {
+            saveAuthSession(result.token, result.user || { email: result.email, isAdmin: result.isAdmin });
+            showToast("Account created successfully! 🎉", "success");
+            setTimeout(() => {
+                window.location.href = result.isAdmin ? "/admin" : "/shop";
+            }, 800);
+            return;
+        }
+
+        if (response.ok && result.email) {
+            userEmail = result.email;
+            document.getElementById("registerSection").style.display = "none";
+            document.getElementById("otpSection").style.display = "block";
+
+            showToast("OTP sent to your email!", "success");
+
+            if (result.devOtp) {
+                const devBox = document.getElementById("devOtpBox");
+                devBox.innerText = `Dev OTP: ${result.devOtp}`;
+                devBox.style.display = "block";
+                document.getElementById("otp").value = result.devOtp;
+            }
+
+            startTimer();
+        } else {
+            showToast(result.msg || "Registration failed", "error");
+            btn.disabled = false;
+            btn.innerText = "CREATE ACCOUNT";
+        }
+    } catch (error) {
+        showToast("Server connection error", "error");
+        btn.disabled = false;
+        btn.innerText = "CREATE ACCOUNT";
+    }
+}
+
+async function verifyOTP() {
+    const otp = document.getElementById("otp").value.trim();
+    const btn = document.getElementById("verifyBtn");
+
+    if (!otp || otp.length !== 6) {
+        showToast("Please enter a valid 6-digit OTP", "error");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "VERIFYING...";
+
+    try {
+        const response = await fetch(API_BASE + "/api/auth/verify-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: userEmail, otp })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.token) {
+            // Save authentication session
+            saveAuthSession(result.token, result.user || { email: result.email, isAdmin: result.isAdmin });
+            showToast("Account verified successfully! 🎉", "success");
+
+            setTimeout(() => {
+                window.location.href = result.isAdmin ? "/admin" : "/shop";
+            }, 800);
+        } else {
+            showToast(result.msg || "Invalid OTP code", "error");
+            btn.disabled = false;
+            btn.innerText = "VERIFY & CONTINUE";
+        }
+    } catch (error) {
+        showToast("Verification failed. Please retry.", "error");
+        btn.disabled = false;
+        btn.innerText = "VERIFY & CONTINUE";
+    }
+}
+
+function startTimer() {
+    timeLeft = 60;
+    document.getElementById("timer").style.display = "block";
+    document.getElementById("resend").style.display = "none";
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+        document.getElementById("timer").innerText = `Resend OTP in ${timeLeft} seconds`;
+        timeLeft--;
+        if (timeLeft < 0) {
+            clearInterval(timerInterval);
+            document.getElementById("timer").style.display = "none";
+            document.getElementById("resend").style.display = "block";
+        }
+    }, 1000);
+}
+
+async function resendOTP() {
+    if (!userEmail) return showToast("Email not found", "error");
+
+    try {
+        const name = document.getElementById("name").value.trim() || "Customer";
+        const password = document.getElementById("password").value || "default_pass";
+        const phone = document.getElementById("phone").value.trim();
+
+        const response = await fetch(API_BASE + "/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email: userEmail, password, phone })
+        });
+        const result = await response.json();
+
+        if (response.ok) {
+            showToast("New OTP sent! 📧", "success");
+            if (result.devOtp) {
+                const devBox = document.getElementById("devOtpBox");
+                devBox.innerText = `Dev OTP: ${result.devOtp}`;
+                devBox.style.display = "block";
+                document.getElementById("otp").value = result.devOtp;
+            }
+            startTimer();
+        } else {
+            showToast(result.msg || "Failed to resend OTP", "error");
+        }
+    } catch (e) {
+        showToast("Error requesting new OTP", "error");
+    }
+}
+
+function switchBackToRegister() {
+    clearInterval(timerInterval);
+    document.getElementById("otpSection").style.display = "none";
+    document.getElementById("registerSection").style.display = "block";
+    const btn = document.getElementById("registerBtn");
+    btn.disabled = false;
+    btn.innerText = "CREATE ACCOUNT";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Profile</title>
+
+<style>
+
+body{
+  background:#11100e;
+  color:#f4efe5;
+  font-family:Arial;
+  padding:20px;
+}
+
+.profile-box{
+  max-width:400px;
+  margin:auto;
+  background:#1b1915;
+  border:1px solid rgba(199,164,106,.2);
+  box-shadow:0 18px 48px rgba(0,0,0,.28);
+  padding:20px;
+  border-radius:15px;
+}
+
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:1px solid rgba(199,164,106,.24);
+  border-radius:10px;
+  background:#12110f;
+  color:#f4efe5;
+}
+input::placeholder,textarea::placeholder{color:#b9b09f}
+
+button{
+
+  width:100%;
+  padding:12px;
+  margin-top:20px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,#e1c98e,#c7a46a 58%,#a98245);
+  color:#211b13;
+  font-size:16px;
+  cursor:pointer;
+}
+
+img{
+
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  object-fit:cover;
+  display:block;
+  margin:auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="profile-box">
+
+<h2 align="center">My Profile</h2>
+
+<img id="profilePreview"
+src="https://i.imgur.com/6VBx3io.png">
+
+<input type="text"
+id="name"
+placeholder="Your Name">
+
+<input type="text"
+id="phone"
+placeholder="Phone Number">
+
+<textarea
+id="address"
+placeholder="Address"></textarea>
+
+<input type="text"
+id="profileImage"
+placeholder="Profile Image URL">
+
+<button onclick="saveProfile()">
+Save Profile
+</button>
+
+</div>
+
+<script src="/config.js"></script>
+<script src="/toast.js"></script>
+<script>
+async function loadProfile() {
+    if (!requireLogin()) return;
+    const res = await fetch(API_BASE + "/api/profile", { headers: getAuthHeader() });
+    const user = await res.json();
+    document.getElementById("name").value = user.name || "";
+    document.getElementById("phone").value = user.phone || "";
+    document.getElementById("address").value = user.address || "";
+    document.getElementById("profileImage").value = user.profileImage || "";
+    if (user.profileImage) document.getElementById("profilePreview").src = user.profileImage;
+}
+async function saveProfile() {
+    const data = {
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        address: document.getElementById("address").value,
+        profileImage: document.getElementById("profileImage").value
+    };
+    const res = await fetch(API_BASE + "/api/profile/update", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", ...getAuthHeader() },
+        body: JSON.stringify(data)
+    });
+    const r = await res.json();
+    showToast(r.msg, "success");
+    loadProfile();
+}
+loadProfile();
+</script>
+
+</body>
+</html>

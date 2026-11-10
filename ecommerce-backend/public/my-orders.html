@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders | Pathaan Collection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+:root{
+  --primary:#d8b576;
+  --secondary:#e4c990;
+  --dark:#11100e;
+  --dark2:#191714;
+  --text:#f4efe5;
+  --gray:#b9b09f;
+  --green:#10b981;
+  --cyan:#d8b576;
+  --red:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{
+  background:var(--dark);
+  color:var(--text);
+  min-height:100vh;
+  padding:24px 20px;
+}
+.header{
+  max-width:850px;
+  margin:0 auto 24px auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.header h1{
+  color:var(--cyan);
+  font-size:24px;
+}
+.header a{
+  color:var(--gray);
+  text-decoration:none;
+  font-size:14px;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  transition:0.2s;
+}
+.header a:hover{color:var(--primary)}
+.orders-list{
+  max-width:850px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.order-card{
+  background:var(--dark2);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:18px;
+  padding:22px;
+}
+.order-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding-bottom:12px;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.order-id{
+  font-weight:bold;
+  color:var(--cyan);
+}
+.order-date{
+  font-size:12px;
+  color:var(--gray);
+}
+.status-pill{
+  padding:5px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+.status-pending{background:rgba(199,164,106,0.18);color:#e4c990}
+.status-confirmed{background:rgba(216,181,118,0.12);color:var(--cyan)}
+.status-shipped{background:rgba(59,130,246,0.18);color:#60a5fa}
+.status-delivered{background:rgba(16,185,129,0.18);color:var(--green)}
+.status-cancelled{background:rgba(239,68,68,0.18);color:var(--red)}
+.cancel-window-note{font-size:12px;color:#e4c990;align-self:center}
+.return-panel{
+  margin-top:14px;
+  padding:14px;
+  border:1px solid rgba(216,181,118,.2);
+  border-radius:12px;
+  background:rgba(216,181,118,.035);
+}
+.return-panel h4{font-size:14px;color:var(--cyan);margin-bottom:8px}
+.return-request-entry{
+  padding:10px 0;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:#d1d5db;
+  font-size:12px;
+  line-height:1.55;
+  overflow-wrap:anywhere;
+}
+.return-form{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.return-form[hidden]{display:none}
+.return-form label{display:grid;gap:5px;color:var(--gray);font-size:12px}
+.return-form select,.return-form input,.return-form textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;
+  background:#171512;
+  color:var(--text);
+  font-size:13px;
+}
+.return-form textarea{min-height:84px;resize:vertical}
+.btn-return{background:rgba(216,181,118,.12);color:var(--cyan);border:1px solid rgba(216,181,118,.32)}
+.btn-return:hover{background:rgba(216,181,118,.2)}
+.return-window-note{color:#e4c990;font-size:12px;line-height:1.5}
+
+.item-content{
+  display:flex;
+  gap:16px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.item-content img{
+  width:80px;
+  height:85px;
+  border-radius:12px;
+  object-fit:cover;
+  background:#1e1e24;
+}
+.item-info{
+  flex:1;
+  min-width:200px;
+}
+.otp-banner{
+  background:rgba(216,181,118,0.08);
+  border:1px dashed var(--cyan);
+  padding:12px 16px;
+  border-radius:12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:14px 0;
+}
+.otp-code{
+  font-size:22px;
+  font-weight:bold;
+  color:var(--cyan);
+  letter-spacing:3px;
+}
+.card-actions{
+  display:flex;
+  gap:10px;
+  margin-top:14px;
+  flex-wrap:wrap;
+}
+.btn-action{
+  padding:8px 16px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  transition:0.2s;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+.btn-cancel{background:rgba(239,68,68,0.2);color:var(--red);border:1px solid rgba(239,68,68,0.4)}
+.btn-cancel:hover{background:rgba(239,68,68,0.3)}
+.btn-address{background:#27272a;color:#fff;border:1px solid rgba(255,255,255,0.15)}
+.btn-address:hover{background:#3f3f46}
+.btn-pay-now{background:linear-gradient(135deg,#e1c98e,#c7a46a 58%,#a98245);color:#211b13}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📦 My Orders</h1>
+  <a href="/shop.html"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+</div>
+
+<div class="orders-list" id="orders">
+  <p style="text-align:center;color:var(--gray)">Loading your orders...</p>
+</div>
+<p style="max-width:850px;margin:18px auto 0;color:var(--gray);font-size:13px;text-align:center">
+  Orders can be cancelled within 30 minutes of placing them. After that, they are automatically confirmed.
+</p>
+
+<script src="/config.js"></script>
+<script src="/toast.js"></script>
+<script>
+async function loadOrders() {
+  if (!requireLogin()) return;
+  try {
+    const res = await fetch(API_BASE + "/api/orders/my", { headers: getAuthHeader() });
+    if (!res.ok) throw new Error("Could not load your orders");
+    const orders = await res.json();
+    const box = document.getElementById("orders");
+    
+    if (!orders.length) {
+      box.innerHTML = `
+        <div style="text-align:center;padding:50px 20px;background:var(--dark2);border-radius:20px">
+          <i class="fa-solid fa-box-open" style="font-size:48px;color:var(--gray);margin-bottom:12px"></i>
+          <h3>No Orders Yet</h3>
+          <p style="color:var(--gray);font-size:14px;margin:8px 0 16px 0">Your placed orders will show up here.</p>
+          <a href="/shop.html" style="padding:10px 20px;background:var(--primary);color:#fff;text-decoration:none;border-radius:10px;font-weight:bold;">
+            Start Shopping
+          </a>
+        </div>
+      `;
+      return;
+    }
+
+    box.innerHTML = orders.map(o => {
+      const statusClass = `status-${(o.status || 'pending').toLowerCase()}`;
+      const imgUrl = getProductImageUrl(o.image || (o.items?.[0]?.image));
+      const title = o.name || (o.items?.[0]?.name) || "Store Order";
+      const total = o.totalAmount || o.price || 0;
+      const orderDate = new Date(o.createdAt || Date.now()).toLocaleDateString("en-IN", {
+        day: "numeric", month: "short", year: "numeric"
+      });
+      const createdAtTime = new Date(o.createdAt).getTime();
+      const cancellationRemaining = getCancellationTimeRemaining(o);
+      const canCancel = o.status === "Pending" && cancellationRemaining > 0;
+      const cancellationCreatedAt = Number.isFinite(createdAtTime) ? new Date(createdAtTime).toISOString() : "";
+      const returnItems = getReturnItems(o);
+      const deliveredAtTime = new Date(o.deliveredAt).getTime();
+      const returnRemaining = getReturnTimeRemaining(o);
+      const activeReturnIndexes = new Set((o.returnRequests || [])
+        .filter(request => ["Requested", "Approved", "Received", "Refunded"].includes(request.status || "Requested"))
+        .map(request => Number(request.itemIndex)));
+      const returnableItems = returnItems
+        .map((item, index) => ({ item, index }))
+        .filter(entry => !activeReturnIndexes.has(entry.index));
+      const canRequestReturn = o.status === "Delivered" && Number.isFinite(deliveredAtTime) && returnRemaining > 0 && returnableItems.length > 0;
+
+      return `
+        <div class="order-card">
+          <div class="order-header">
+            <div>
+              <span class="order-id">Order #${o._id.slice(-6).toUpperCase()}</span>
+              <span class="order-date">• ${orderDate}</span>
+            </div>
+            <span class="status-pill ${statusClass}">${o.status}</span>
+          </div>
+
+          <div class="item-content">
+            <img src="${imgUrl}" alt="${escapeHtml(title)}">
+            <div class="item-info">
+              <h3 style="font-size:16px;color:#fff">${escapeHtml(title)}</h3>
+              <p style="font-size:13px;color:var(--gray);margin-top:4px">
+                Quantity: ${o.qty || 1} | Size: ${o.size || 'M'} | Color: ${o.color || 'Default'}
+              </p>
+              <p style="font-size:16px;font-weight:bold;color:var(--primary);margin-top:6px">
+                ${formatPrice(total)}
+                <span style="font-size:12px;font-weight:normal;color:var(--gray)">(${o.paymentMethod || 'COD'} - ${o.paymentStatus || 'Pending'})</span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Delivery OTP Banner -->
+          <div class="otp-banner">
+            <div>
+              <div style="font-size:11px;color:var(--gray);text-transform:uppercase">Delivery verification</div>
+              <div style="font-size:12px;color:#ccc">${o.deliveryOtpEmailSentAt ? "Your delivery OTP was emailed to you." : "Your delivery OTP will be emailed when your order ships."}</div>
+            </div>
+          </div>
+
+          <div style="font-size:12px;color:var(--gray);margin-top:8px">
+            <b>Delivery Address:</b> ${escapeHtml(o.address || '')}
+          </div>
+
+          ${renderReturnPanel(o, returnableItems, canRequestReturn)}
+
+          <div class="card-actions">
+            ${o.paymentStatus !== "Paid" && o.paymentMethod !== "COD" && o.status !== "Cancelled" ? `
+              <button class="btn-action btn-pay-now" onclick="window.location.href='/payment.html?orderId=${o._id}&amount=${total}&method=${o.paymentMethod}'">
+                <i class="fa-solid fa-credit-card"></i> Complete Payment
+              </button>
+            ` : ""}
+
+            ${o.status !== "Delivered" && o.status !== "Cancelled" && o.status !== "Shipped" && o.status !== "Confirmed" ? `
+              <button class="btn-action btn-address" onclick="changeAddress('${o._id}')">
+                <i class="fa-solid fa-pen"></i> Update Address
+              </button>
+            ` : ""}
+            ${canCancel ? `
+              <span class="cancel-window-note" data-cancel-countdown data-created-at="${cancellationCreatedAt}">Auto-confirming in ${formatCancellationCountdown(cancellationRemaining)}</span>
+              <button class="btn-action btn-cancel" onclick="cancelOrder('${o._id}')">
+                <i class="fa-solid fa-ban"></i> Cancel Order
+              </button>
+            ` : ""}
+          </div>
+        </div>
+      `;
+    }).join("");
+    updateCancelCountdowns();
+  } catch (e) {
+    showToast(e.message || "Failed to load orders", "error");
+  }
+}
+
+function getCancellationTimeRemaining(order) {
+  const createdAt = new Date(order.createdAt).getTime();
+  if (!Number.isFinite(createdAt)) return 0;
+  return Math.max(0, createdAt + 30 * 60 * 1000 - Date.now());
+}
+
+function formatCancellationCountdown(milliseconds) {
+  const totalSeconds = Math.ceil(milliseconds / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function getReturnItems(order) {
+  if (Array.isArray(order.items) && order.items.length) return order.items;
+  return [{
+    productId: order.productId || "",
+    name: order.name || "Order item",
+    image: order.image || "",
+    qty: order.qty || 1,
+    size: order.size || "M",
+    color: order.color || "Default"
+  }];
+}
+
+function getReturnTimeRemaining(order) {
+  const deliveredAt = new Date(order.deliveredAt).getTime();
+  if (order.status !== "Delivered" || !Number.isFinite(deliveredAt)) return 0;
+  return Math.max(0, deliveredAt + 3 * 60 * 60 * 1000 - Date.now());
+}
+
+function renderReturnPanel(order, returnableItems, canRequestReturn) {
+  const requests = Array.isArray(order.returnRequests) ? order.returnRequests : [];
+  const requestEntries = requests.map(request => `
+    <div class="return-request-entry">
+      <b>${escapeHtml(request.productName || "Returned product")}</b>
+      · Qty ${Number(request.quantity) || 1}
+      · <b>${escapeHtml(request.status || "Requested")}</b><br>
+      Reason: ${escapeHtml(request.reason || "Not specified")}<br>
+      Details: ${escapeHtml(request.details || "Not provided")}
+    </div>
+  `).join("");
+  const formId = `return-form-${order._id}`;
+  const itemSelectId = `return-item-${order._id}`;
+  const itemOptions = returnableItems.map(({ item, index }) => {
+    const label = `${item.name || "Order item"} · ${item.size || "M"} / ${item.color || "Default"} · max ${Math.max(1, Number(item.qty) || 1)}`;
+    return `<option value="${index}" data-max-quantity="${Math.max(1, Number(item.qty) || 1)}">${escapeHtml(label)}</option>`;
+  }).join("");
+
+  if (!requests.length && ["Cancelled", "Delivered"].includes(order.status) === false) {
+    return `
+      <section class="return-panel" aria-label="Product returns">
+        <h4>Product return</h4>
+        <p class="return-window-note">The return option will appear here after delivery and is available for 3 hours.</p>
+      </section>
+    `;
+  }
+  if (!requests.length && order.status === "Cancelled") return "";
+  return `
+    <section class="return-panel" aria-label="Product returns">
+      <h4>Product return</h4>
+      ${requestEntries}
+      ${canRequestReturn ? `
+        <p class="return-window-note">Submit your return request within 3 hours after delivery.</p>
+        <button type="button" class="btn-action btn-return" data-return-button data-delivered-at="${new Date(order.deliveredAt).toISOString()}" onclick="toggleReturnForm('${order._id}')">
+          <i class="fa-solid fa-rotate-left"></i> Request Return
+        </button>
+        <form class="return-form" id="${formId}" hidden onsubmit="submitReturnRequest(event, '${order._id}')">
+          <label>Product
+            <select id="${itemSelectId}" onchange="updateReturnQuantityLimit('${order._id}')" required>${itemOptions}</select>
+          </label>
+          <label>Quantity to return
+            <input id="return-quantity-${order._id}" type="number" min="1" max="${Math.max(1, Number(returnableItems[0].item.qty) || 1)}" value="1" required>
+          </label>
+          <label>Return reason
+            <select id="return-reason-${order._id}" required>
+              <option value="">Select a reason</option>
+              <option value="Wrong item received">Wrong item received</option>
+              <option value="Damaged or defective">Damaged or defective</option>
+              <option value="Size or fit issue">Size or fit issue</option>
+              <option value="Quality issue">Quality issue</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+          <label>Return details
+            <textarea id="return-details-${order._id}" minlength="10" maxlength="1000" placeholder="Describe the issue and any relevant details (at least 10 characters)." required></textarea>
+          </label>
+          <button type="submit" class="btn-action btn-return">Submit Return Request</button>
+        </form>
+      ` : order.status === "Delivered" && !requests.length
+          ? '<p class="return-window-note">The 3-hour return window has expired or is unavailable for this order.</p>'
+          : ""}
+    </section>
+  `;
+}
+
+function toggleReturnForm(orderId) {
+  const form = document.getElementById(`return-form-${orderId}`);
+  if (form) form.hidden = !form.hidden;
+}
+
+function updateReturnQuantityLimit(orderId) {
+  const select = document.getElementById(`return-item-${orderId}`);
+  const quantity = document.getElementById(`return-quantity-${orderId}`);
+  if (!select || !quantity) return;
+  const maxQuantity = Number(select.selectedOptions[0]?.dataset.maxQuantity) || 1;
+  quantity.max = String(maxQuantity);
+  if (Number(quantity.value) > maxQuantity) quantity.value = String(maxQuantity);
+}
+
+async function submitReturnRequest(event, orderId) {
+  event.preventDefault();
+  const itemIndex = Number(document.getElementById(`return-item-${orderId}`)?.value);
+  const quantity = Number(document.getElementById(`return-quantity-${orderId}`)?.value);
+  const reason = document.getElementById(`return-reason-${orderId}`)?.value || "";
+  const details = document.getElementById(`return-details-${orderId}`)?.value.trim() || "";
+
+  try {
+    const res = await fetch(`${API_BASE}/api/orders/${orderId}/return`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...getAuthHeader() },
+      body: JSON.stringify({ itemIndex, quantity, reason, details })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.msg || "Could not submit return request");
+    showToast(data.msg || "Return request submitted", "success");
+    await loadOrders();
+  } catch (error) {
+    showToast(error.message || "Return request failed", "error");
+  }
+}
+
+function updateCancelCountdowns() {
+  let shouldRefreshOrders = false;
+  document.querySelectorAll("[data-cancel-countdown]").forEach(note => {
+    const remaining = getCancellationTimeRemaining({ createdAt: note.dataset.createdAt });
+    if (remaining === 0) {
+      note.textContent = "Cancellation window ended; order is confirming.";
+      const cancelButton = note.parentElement.querySelector(".btn-cancel");
+      if (cancelButton) cancelButton.remove();
+      if (note.dataset.refreshRequested !== "true") {
+        note.dataset.refreshRequested = "true";
+        shouldRefreshOrders = true;
+      }
+      return;
+    }
+    note.textContent = `Auto-confirming in ${formatCancellationCountdown(remaining)}`;
+  });
+
+  document.querySelectorAll("[data-return-button]").forEach(button => {
+    const deliveredAt = new Date(button.dataset.deliveredAt).getTime();
+    if (!Number.isFinite(deliveredAt) || Date.now() >= deliveredAt + 3 * 60 * 60 * 1000) {
+      button.remove();
+      const panel = button.closest(".return-panel");
+      const form = panel?.querySelector(".return-form");
+      if (form) form.hidden = true;
+      const note = panel?.querySelector(".return-window-note");
+      if (note) note.textContent = "The 3-hour return window has expired.";
+    }
+  });
+
+  if (shouldRefreshOrders) loadOrders();
+}
+
+setInterval(updateCancelCountdowns, 1000);
+
+async function cancelOrder(id) {
+  if (!confirm("Are you sure you want to cancel this order?")) return;
+  try {
+    const res = await fetch(API_BASE + "/api/orders/cancel/" + id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", ...getAuthHeader() },
+      body: JSON.stringify({})
+    });
+    const d = await res.json();
+    showToast(d.msg || "Order cancelled", res.ok ? "success" : "error");
+    loadOrders();
+  } catch (e) {
+    showToast("Cancellation failed", "error");
+  }
+}
+
+async function changeAddress(id) {
+  const newAddress = prompt("Enter updated delivery address:");
+  if (!newAddress) return;
+  try {
+    const res = await fetch(API_BASE + "/api/orders/address/" + id, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", ...getAuthHeader() },
+      body: JSON.stringify({ address: newAddress })
+    });
+    const d = await res.json();
+    showToast(d.msg || "Address updated", res.ok ? "success" : "error");
+    loadOrders();
+  } catch (e) {
+    showToast("Failed to update address", "error");
+  }
+}
+
+loadOrders();
+</script>
+</body>
+</html>

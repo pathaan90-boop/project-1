@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Pathaan Collection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(-45deg,#11100e,#2a241b,#0d0c0a,#211b13);
+    background-size:400% 400%;
+    animation:bg 12s ease infinite;
+    padding:20px;
+}
+@keyframes bg{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.box{
+    width:100%;
+    max-width:400px;
+    padding:40px 32px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 0 50px rgba(199,164,106,0.18);
+    text-align:center;
+    position:relative;
+}
+
+.brand-badge{
+    display:inline-block;
+    padding:6px 14px;
+    background:rgba(199,164,106,0.14);
+    border:1px solid rgba(199,164,106,0.38);
+    color:#e4c990;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1px;
+    margin-bottom:15px;
+    text-decoration:none;
+}
+
+h1{color:white;margin-bottom:8px;font-size:28px}
+.sub{color:#bbb;font-size:14px;margin-bottom:25px}
+
+.input-group{
+    position:relative;
+    margin-bottom:16px;
+    text-align:left;
+}
+.input-group i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#888;
+    font-size:16px;
+}
+input{
+    width:100%;
+    padding:15px 16px 15px 45px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:12px;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+input:focus{
+    border-color:#d8b576;
+    background:rgba(255,255,255,0.18);
+    box-shadow:0 0 15px rgba(216,181,118,0.24);
+}
+input::placeholder{color:#aaa}
+
+.forgot-link{
+    display:block;
+    text-align:right;
+    color:#e4c990;
+    font-size:13px;
+    text-decoration:none;
+    margin-top:-6px;
+    margin-bottom:18px;
+    cursor:pointer;
+}
+.forgot-link:hover{text-decoration:underline}
+
+button.submit-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#e1c98e,#c7a46a 58%,#a98245);
+    color:#000;
+    font-size:16px;
+    font-weight:bold;
+    letter-spacing:0.5px;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 4px 20px rgba(199,164,106,0.24);
+}
+button.submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 25px rgba(199,164,106,0.38);
+}
+button.submit-btn:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.bottom{margin-top:24px;color:#aaa;font-size:14px}
+.bottom a{color:#e4c990;text-decoration:none;font-weight:bold}
+.bottom a:hover{text-decoration:underline}
+
+.back-home{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#888;
+    font-size:13px;
+    text-decoration:none;
+    margin-top:20px;
+    transition:0.3s;
+}
+.back-home:hover{color:#fff}
+
+/* Modal for Forgot Password */
+.modal-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    backdrop-filter:blur(8px);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+.modal-overlay.active{display:flex}
+.modal-card{
+    background:#121212;
+    border:1px solid #333;
+    padding:30px;
+    border-radius:20px;
+    max-width:380px;
+    width:100%;
+    text-align:center;
+    color:white;
+}
+.modal-card h2{color:#d8b576;margin-bottom:10px}
+.modal-card p{color:#aaa;font-size:14px;margin-bottom:20px}
+</style>
+</head>
+<body>
+
+<div class="box">
+    <a href="/shop" class="brand-badge"><i class="fa-solid fa-crown"></i> PATHAAN COLLECTION</a>
+    <h1>Welcome Back 🚀</h1>
+    <p class="sub">Log in to manage your orders & cart</p>
+
+    <div class="input-group">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="email" id="email" placeholder="Email Address" required>
+    </div>
+
+    <div class="input-group">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+    </div>
+
+    <span class="forgot-link" onclick="openForgotModal()">Forgot password?</span>
+
+    <button id="loginBtn" class="submit-btn" onclick="login()">LOGIN</button>
+
+    <div class="bottom">Don't have an account? <a href="/register">Register</a></div>
+    <div><a href="/shop" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to Store</a></div>
+</div>
+
+<!-- FORGOT PASSWORD MODAL -->
+<div id="forgotModal" class="modal-overlay">
+    <div class="modal-card">
+        <h2>Reset Password 🔑</h2>
+        <p>Enter your registered email to receive a password reset OTP code.</p>
+        
+        <div id="step1">
+            <div class="input-group">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="forgotEmail" placeholder="Your Registered Email">
+            </div>
+            <button class="submit-btn" onclick="sendForgotOtp()">SEND OTP</button>
+        </div>
+
+        <div id="step2" style="display:none;margin-top:15px;">
+            <div class="input-group">
+                <i class="fa-solid fa-key"></i>
+                <input type="text" id="resetOtp" placeholder="6-Digit OTP">
+            </div>
+            <div class="input-group">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" id="resetNewPass" placeholder="New Password (min 6 chars)">
+            </div>
+            <button class="submit-btn" onclick="submitResetPassword()">RESET PASSWORD</button>
+        </div>
+
+        <button onclick="closeForgotModal()" style="margin-top:15px;background:none;border:none;color:#888;cursor:pointer;font-size:14px">Cancel</button>
+    </div>
+</div>
+
+<script src="/config.js"></script>
+<script src="/toast.js"></script>
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const redirectUrl = urlParams.get("redirect") || "";
+
+// If already logged in, redirect to shop or target
+if (isLoggedIn()) {
+    window.location.href = redirectUrl || "/shop";
+}
+
+async function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const btn = document.getElementById("loginBtn");
+
+    if (!email || !password) {
+        showToast("Please enter email and password", "error");
+        return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "LOGGING IN...";
+
+    try {
+        const res = await fetch(API_BASE + "/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+        const r = await res.json();
+
+        if (res.ok && r.token) {
+            saveAuthSession(r.token, r.user || { email: r.email, isAdmin: r.isAdmin });
+            showToast("Login successful!", "success");
+
+            setTimeout(() => {
+                if (r.isAdmin) {
+                    window.location.href = "/admin";
+                } else if (redirectUrl) {
+                    window.location.href = redirectUrl;
+                } else {
+                    window.location.href = "/shop";
+                }
+            }, 700);
+        } else if (r.needVerification) {
+            showToast(r.msg || "Please verify your email", "info");
+            setTimeout(() => {
+                window.location.href = `/register?verify=1&email=${encodeURIComponent(r.email || email)}`;
+            }, 1200);
+        } else {
+            showToast(r.msg || "Invalid email or password", "error");
+            btn.disabled = false;
+            btn.innerText = "LOGIN";
+        }
+    } catch (e) {
+        showToast("Unable to connect to server. Check backend.", "error");
+        btn.disabled = false;
+        btn.innerText = "LOGIN";
+    }
+}
+
+// Forgot Password Workflow
+function openForgotModal() { document.getElementById("forgotModal").classList.add("active"); }
+function closeForgotModal() { document.getElementById("forgotModal").classList.remove("active"); }
+
+async function sendForgotOtp() {
+    const email = document.getElementById("forgotEmail").value.trim();
+    if (!email) return showToast("Enter your email", "error");
+
+    try {
+        const res = await fetch(API_BASE + "/api/auth/forgot-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
+        const d = await res.json();
+        if (res.ok) {
+            showToast(d.msg || "OTP sent to your email", "success");
+            document.getElementById("step1").style.display = "none";
+            document.getElementById("step2").style.display = "block";
+        } else {
+            showToast(d.msg || "Error sending reset OTP", "error");
+        }
+    } catch (e) {
+        showToast("Network error", "error");
+    }
+}
+
+async function submitResetPassword() {
+    const email = document.getElementById("forgotEmail").value.trim();
+    const otp = document.getElementById("resetOtp").value.trim();
+    const password = document.getElementById("resetNewPass").value;
+
+    if (!otp || !password) return showToast("Please enter OTP and new password", "error");
+    if (password.length < 6) return showToast("Password minimum 6 characters", "error");
+
+    try {
+        const res = await fetch(API_BASE + "/api/auth/reset-password", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, otp, password })
+        });
+        const d = await res.json();
+        if (res.ok) {
+            showToast("Password reset successful! Please login.", "success");
+            closeForgotModal();
+            document.getElementById("password").value = password;
+        } else {
+            showToast(d.msg || "Reset failed", "error");
+        }
+    } catch (e) {
+        showToast("Network error", "error");
+    }
+}
+</script>
+</body>
+</html>

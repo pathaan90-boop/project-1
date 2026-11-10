@@ -1,0 +1,51 @@
+[
+  {
+    "_id": "660000000000000000000001",
+    "name": "Pathaan Admin",
+    "email": "admin@pathaan.com",
+    "password": "$2b$10$IAVXwwzIlAtk4XZX8ZuIGulsFbc98S4GVZQIbzrKjU/2hOVF2o2uW",
+    "phone": "9876543210",
+    "address": "Pathaan Collection HQ",
+    "city": "Mumbai",
+    "pincode": "400001",
+    "state": "Maharashtra",
+    "verified": true,
+    "isAdmin": true,
+    "profileImage": "https://i.ibb.co/4pDNDk1/avatar.png",
+    "createdAt": "2026-10-27T12:47:47.174Z"
+  },
+  {
+    "_id": "6ae0a4931bf60b6a25a9e116",
+    "createdAt": "2026-10-27T13:18:11.928Z",
+    "name": "javed",
+    "email": "a24764848@gmail.com",
+    "password": "$2b$10$ZL/Moe.LErA25AhYXYbvbOPhILZAt1Fx0XTLStNOdJOYGtFI0kAR6",
+    "phone": "9024638533",
+    "address": "",
+    "city": "",
+    "pincode": "",
+    "state": "",
+    "otp": "",
+    "otpExpires": null,
+    "verified": true,
+    "isAdmin": false,
+    "profileImage": "/uploads/1794129193781-1000003689.jpg"
+  },
+  {
+    "_id": "6ae5ad04a63253cd622e4aec",
+    "createdAt": "2026-10-31T08:55:32.071Z",
+    "name": "javed",
+    "email": "pathan123@gmail.com",
+    "password": "$2b$10$vdbJxnZBTrffGvLI1rBzHuiFBW9s71LkPXmmrn.ubFQkd./8T8FMW",
+    "phone": "9024638533",
+    "address": "",
+    "city": "",
+    "pincode": "",
+    "state": "",
+    "otp": "309983",
+    "otpExpires": "2026-10-31T09:05:32.062Z",
+    "verified": false,
+    "isAdmin": false,
+    "profileImage": "https://i.ibb.co/4pDNDk1/avatar.png"
+  }
+]

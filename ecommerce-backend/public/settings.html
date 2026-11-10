@@ -1,0 +1,3197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Settings | Pathaan Collection</title>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root {
+      color-scheme: dark;
+
+      --background: #0d0d0f;
+      --surface: #171719;
+      --surface-2: #202023;
+      --text: #f5f5f5;
+      --muted: #9999a1;
+      --gold: #d8b576;
+      --gold-hover: #e6c98e;
+      --border: rgba(255,255,255,.09);
+      --danger: #ef7777;
+      --success: #72d69a;
+      --shadow: 0 15px 45px rgba(0,0,0,.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top right, rgba(216,181,118,.07), transparent 30%),
+        var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 28px 18px;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a,
+    select {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .settings-page {
+      max-width: 1120px;
+      margin: auto;
+    }
+
+    /* Header */
+
+    .top-header {
+      margin-bottom: 28px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 700;
+      margin-bottom: 24px;
+      transition: .2s;
+    }
+
+    .back-link:hover {
+      color: var(--gold-hover);
+      transform: translateX(-2px);
+    }
+
+    .page-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(30px, 5vw, 44px);
+      letter-spacing: -.8px;
+    }
+
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .settings-layout {
+      display: grid;
+      grid-template-columns: 235px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    /* Sidebar */
+
+    .settings-nav {
+      position: sticky;
+      top: 20px;
+      background: rgba(23,23,25,.88);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-title {
+      padding: 12px 13px 10px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 12px 13px;
+      margin: 3px 0;
+      border: 0;
+      border-radius: 11px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      text-align: left;
+      transition: .2s;
+    }
+
+    .nav-button i {
+      width: 18px;
+      text-align: center;
+    }
+
+    .nav-button:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .nav-button.active {
+      background: rgba(216,181,118,.13);
+      color: var(--gold);
+    }
+
+    /* Sections */
+
+    .settings-section {
+      display: none;
+      scroll-margin-top: 20px;
+    }
+
+    .settings-section.active {
+      display: block;
+      animation: fadeIn .22s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .settings-card {
+      background: linear-gradient(
+        145deg,
+        rgba(31,31,34,.96),
+        rgba(20,20,22,.96)
+      );
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.14);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin-bottom: 20px;
+    }
+
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(216,181,118,.11);
+      color: var(--gold);
+      font-size: 17px;
+    }
+
+    .settings-card h2 {
+      margin: 0 0 5px;
+      font-size: 19px;
+    }
+
+    .card-description {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* Rows */
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 17px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .setting-row:first-of-type {
+      border-top: 0;
+    }
+
+    .setting-label {
+      font-weight: 700;
+    }
+
+    .setting-help {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    /* Inputs */
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #d6d6da;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: #111113;
+      color: var(--text);
+      padding: 11px 13px;
+      outline: none;
+      transition: .2s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(216,181,118,.09);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .password-reset-panel {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .password-reset-panel h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .password-reset-panel > p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .reset-code-form {
+      margin-top: 16px;
+    }
+
+    /* Buttons */
+
+    .save-button,
+    .secondary-button,
+    .danger-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .save-button {
+      border: 0;
+      background: var(--gold);
+      color: #171717;
+    }
+
+    .save-button:hover {
+      background: var(--gold-hover);
+      transform: translateY(-1px);
+    }
+
+    .save-button:disabled,
+    .secondary-button:disabled,
+    .danger-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .secondary-button {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .secondary-button:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(216,181,118,.05);
+    }
+
+    .danger-button {
+      border: 1px solid rgba(239,119,119,.3);
+      background: transparent;
+      color: #f4a1a1;
+    }
+
+    .danger-button:hover {
+      background: rgba(239,119,119,.08);
+      border-color: var(--danger);
+    }
+
+    /* Switch */
+
+    .switch {
+      position: relative;
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+
+    .switch input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .switch-track {
+      width: 48px;
+      height: 27px;
+      border-radius: 30px;
+      background: #48484d;
+      cursor: pointer;
+      transition: .2s;
+      position: relative;
+    }
+
+    .switch-track::after {
+      content: "";
+      position: absolute;
+      top: 3.5px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      transition: .2s;
+    }
+
+    .switch input:checked + .switch-track {
+      background: var(--gold);
+    }
+
+    .switch input:checked + .switch-track::after {
+      transform: translateX(20px);
+    }
+
+    /* Account */
+
+    .account-state {
+      padding: 14px 15px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 17px;
+    }
+
+    .account-state strong {
+      color: var(--text);
+    }
+
+    /* Addresses */
+
+    .address-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .address-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 17px;
+      background: rgba(255,255,255,.018);
+    }
+
+    .address-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .address-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .address-title i {
+      color: var(--gold);
+    }
+
+    .address-item p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 10px 0 14px;
+      font-size: 13px;
+    }
+
+    .address-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .address-actions button {
+      min-height: 36px;
+      padding: 7px 11px;
+      font-size: 12px;
+    }
+
+    .address-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 20px;
+      background: rgba(216,181,118,.11);
+      color: var(--gold);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .appearance-note {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .appearance-swatch {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(216,181,118,.12);
+    }
+
+    /* Support */
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .support-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 62px;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .support-link:hover {
+      border-color: var(--gold);
+      background: rgba(216,181,118,.05);
+    }
+
+    .support-link i {
+      color: var(--gold);
+      font-size: 17px;
+      width: 24px;
+      text-align: center;
+    }
+
+    .support-link strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .support-link span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* Status */
+
+    .status {
+      font-size: 12px;
+      color: var(--success);
+    }
+
+    .privacy-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      margin: 12px 0 0;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 800px) {
+      .settings-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .settings-nav {
+        position: static;
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+        padding: 7px;
+      }
+
+      .nav-title {
+        display: none;
+      }
+
+      .nav-button {
+        min-width: max-content;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 20px 13px;
+      }
+
+      .settings-card {
+        padding: 18px;
+      }
+
+      .form-grid,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .setting-row {
+        align-items: flex-start;
+      }
+
+      .page-heading {
+        display: block;
+      }
+
+      .settings-nav {
+        margin-bottom: 4px;
+      }
+
+      .nav-button {
+        padding: 10px 12px;
+      }
+
+      .nav-button span {
+        font-size: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<main class="settings-page">
+
+  <header class="top-header">
+
+    <a class="back-link" href="/shop.html">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to Shop
+    </a>
+
+    <div class="page-heading">
+      <div>
+        <h1>Settings</h1>
+        <p class="intro">
+          Manage your account, shopping preferences and delivery information.
+        </p>
+      </div>
+    </div>
+
+  </header>
+
+
+  <div class="settings-layout">
+
+    <!-- SIDEBAR -->
+
+    <nav class="settings-nav">
+
+      <div class="nav-title">Settings</div>
+
+      <button class="nav-button active" data-section="account">
+        <i class="fa-solid fa-user"></i>
+        <span>Account</span>
+      </button>
+
+      <button class="nav-button" data-section="preferences">
+        <i class="fa-solid fa-sliders"></i>
+        <span>Preferences</span>
+      </button>
+
+      <button class="nav-button" data-section="shopping">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Shopping</span>
+      </button>
+
+      <button class="nav-button" data-section="support">
+        <i class="fa-solid fa-headset"></i>
+        <span>Support</span>
+      </button>
+
+      <button class="nav-button" data-section="legal">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Legal</span>
+      </button>
+
+    </nav>
+
+
+    <div class="settings-content">
+
+
+      <!-- ACCOUNT -->
+
+      <section class="settings-section active" id="account">
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-user-shield"></i>
+            </div>
+
+            <div>
+              <h2>Account & Security</h2>
+              <p class="card-description">
+                Manage your account and password securely.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="account-state" id="signedInState" hidden>
+            Signed in as
+            <strong id="accountEmail"></strong>
+          </div>
+
+          <div class="account-state" id="signedOutState" hidden>
+            You are not signed in.
+            <a href="/login.html" style="color:var(--gold)">
+              Sign in
+            </a>
+            to manage your account.
+          </div>
+
+
+          <form id="passwordForm" hidden>
+
+            <div class="form-grid">
+
+              <div class="form-field">
+                <label for="currentPassword">
+                  Current Password
+                </label>
+
+                <input
+                  id="currentPassword"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                >
+              </div>
+
+
+              <div class="form-field">
+                <label for="newPassword">
+                  New Password
+                </label>
+
+                <input
+                  id="newPassword"
+                  type="password"
+                  minlength="6"
+                  autocomplete="new-password"
+                  required
+                >
+              </div>
+
+
+              <div class="form-field">
+                <label for="confirmPassword">
+                  Confirm New Password
+                </label>
+
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  minlength="6"
+                  autocomplete="new-password"
+                  required
+                >
+              </div>
+
+            </div>
+
+
+            <div class="form-actions">
+
+              <button
+                class="save-button"
+                id="changePasswordButton"
+                type="submit"
+              >
+                <i class="fa-solid fa-lock"></i>
+                Update Password
+              </button>
+
+              <button
+                class="danger-button"
+                id="signOutButton"
+                type="button"
+              >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+              </button>
+
+            </div>
+
+          </form>
+
+          <div class="password-reset-panel" id="emailPasswordReset" hidden>
+            <h3>Reset password by email</h3>
+            <p>
+              We’ll send a one-time code to
+              <strong id="passwordResetEmail"></strong>.
+              The code is valid for 10 minutes.
+            </p>
+            <button class="secondary-button" id="sendPasswordResetCodeButton" type="button">
+              <i class="fa-solid fa-envelope"></i>
+              Email me a reset code
+            </button>
+
+            <form class="reset-code-form" id="passwordResetForm" hidden>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="passwordResetCode">Email verification code</label>
+                  <input id="passwordResetCode" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required>
+                </div>
+                <div class="form-field">
+                  <label for="emailResetNewPassword">New password</label>
+                  <input id="emailResetNewPassword" type="password" minlength="6" autocomplete="new-password" required>
+                </div>
+                <div class="form-field">
+                  <label for="emailResetConfirmPassword">Confirm new password</label>
+                  <input id="emailResetConfirmPassword" type="password" minlength="6" autocomplete="new-password" required>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button class="save-button" id="confirmPasswordResetButton" type="submit">
+                  <i class="fa-solid fa-lock"></i>
+                  Reset password
+                </button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- PREFERENCES -->
+
+      <section class="settings-section" id="preferences">
+
+
+        <!-- LANGUAGE -->
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-language"></i>
+            </div>
+
+            <div>
+              <h2>Language</h2>
+              <p class="card-description">
+                Choose your preferred language.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="languagePreference">
+              Display Language
+            </label>
+
+            <select id="languagePreference">
+
+              <option value="en">
+                English
+              </option>
+
+              <option value="hi">
+                Hindi
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              class="save-button"
+              id="saveLanguage"
+              type="button"
+            >
+              <i class="fa-solid fa-check"></i>
+              Save Language
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- CURRENCY -->
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+
+            <div>
+              <h2>Currency</h2>
+              <p class="card-description">
+                Choose how prices are displayed.
+                Product prices remain stored in INR.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="currencyPreference">
+              Display Currency
+            </label>
+
+            <select id="currencyPreference">
+
+              <option value="INR">
+                INR (₹)
+              </option>
+
+              <option value="USD">
+                USD ($)
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              class="save-button"
+              id="saveCurrency"
+              type="button"
+            >
+              <i class="fa-solid fa-check"></i>
+              Save Currency
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- APPEARANCE -->
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+
+            <div>
+              <h2>Appearance</h2>
+              <p class="card-description">
+                Pathaan Atelier's signature premium colors are used throughout the website.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="appearance-note">
+            <span class="appearance-swatch" aria-hidden="true"></span>
+            <span>Midnight black surfaces with a consistent champagne-gold accent.</span>
+          </div>
+
+        </div>
+
+
+      </section>
+
+
+      <!-- SHOPPING -->
+
+      <section class="settings-section" id="shopping">
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+
+            <div>
+              <h2>Notifications</h2>
+              <p class="card-description">
+                Choose which updates you want to receive.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="setting-row">
+
+            <div>
+
+              <span class="setting-label">
+                Order Updates
+              </span>
+
+              <span class="setting-help">
+                Receive updates about your orders and delivery.
+              </span>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="orderUpdates"
+              >
+
+              <span class="switch-track"></span>
+
+            </label>
+
+          </div>
+
+
+          <div class="setting-row">
+
+            <div>
+
+              <span class="setting-label">
+                Offers & Promotions
+              </span>
+
+              <span class="setting-help">
+                Receive special offers and new collection updates.
+              </span>
+
+            </div>
+
+
+            <label class="switch">
+
+              <input
+                type="checkbox"
+                id="offersPromotions"
+              >
+
+              <span class="switch-track"></span>
+
+            </label>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              class="save-button"
+              id="saveNotifications"
+              type="button"
+            >
+              <i class="fa-solid fa-check"></i>
+              Save Preferences
+            </button>
+
+            <span
+              class="status"
+              id="notificationStatus"
+              role="status"
+            ></span>
+
+          </div>
+
+        </div>
+
+
+        <!-- ADDRESS -->
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+
+            <div>
+              <h2>Delivery Addresses</h2>
+              <p class="card-description">
+                Manage your saved delivery addresses.
+              </p>
+            </div>
+
+          </div>
+
+
+          <button
+            class="save-button"
+            id="addAddressButton"
+            type="button"
+          >
+            <i class="fa-solid fa-plus"></i>
+            Add New Address
+          </button>
+
+
+          <p
+            class="privacy-note"
+            id="addressStatus"
+            role="status"
+          ></p>
+
+
+          <div
+            class="address-list"
+            id="addressList"
+          ></div>
+
+
+          <form
+            id="addressForm"
+            hidden
+          >
+
+            <div class="form-grid">
+
+              <div class="form-field">
+
+                <label for="addressLabel">
+                  Address Type
+                </label>
+
+                <select id="addressLabel">
+
+                  <option value="Home">
+                    Home
+                  </option>
+
+                  <option value="Work">
+                    Work
+                  </option>
+
+                  <option value="Other">
+                    Other
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="addressName">
+                  Full Name
+                </label>
+
+                <input
+                  id="addressName"
+                  autocomplete="name"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="addressPhone">
+                  Phone
+                </label>
+
+                <input
+                  id="addressPhone"
+                  type="tel"
+                  autocomplete="tel"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="addressLine">
+                  Street Address
+                </label>
+
+                <input
+                  id="addressLine"
+                  autocomplete="street-address"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="addressCity">
+                  City
+                </label>
+
+                <input
+                  id="addressCity"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="addressState">
+                  State
+                </label>
+
+                <input
+                  id="addressState"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-field">
+
+                <label for="addressPincode">
+                  PIN Code
+                </label>
+
+                <input
+                  id="addressPincode"
+                  autocomplete="postal-code"
+                  required
+                >
+
+              </div>
+
+            </div>
+
+
+            <div class="setting-row">
+
+              <div>
+
+                <span class="setting-label">
+                  Default Address
+                </span>
+
+                <span class="setting-help">
+                  Use this address automatically for delivery.
+                </span>
+
+              </div>
+
+
+              <label class="switch">
+
+                <input
+                  id="addressDefault"
+                  type="checkbox"
+                >
+
+                <span class="switch-track"></span>
+
+              </label>
+
+            </div>
+
+
+            <div class="form-actions">
+
+              <button
+                class="save-button"
+                id="saveAddressButton"
+                type="submit"
+              >
+                Save Address
+              </button>
+
+              <button
+                class="secondary-button"
+                id="cancelAddressButton"
+                type="button"
+              >
+                Cancel
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+
+      </section>
+
+
+      <!-- SUPPORT -->
+
+      <section
+        class="settings-section"
+        id="support"
+      >
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+
+            <div>
+              <h2>Help & Support</h2>
+              <p class="card-description">
+                Need help? We're here for you.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="link-grid">
+
+            <a
+              class="support-link"
+              href="/policy.html#contact-support"
+            >
+
+              <i class="fa-solid fa-headset"></i>
+
+              <div>
+
+                <strong>Contact Support</strong>
+
+                <span>
+                  Get help with your account or order
+                </span>
+
+              </div>
+
+            </a>
+
+
+            <a
+              class="support-link"
+              href="/faq.html"
+            >
+
+              <i class="fa-solid fa-circle-question"></i>
+
+              <div>
+
+                <strong>Frequently Asked Questions</strong>
+
+                <span>
+                  Find quick answers
+                </span>
+
+              </div>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- LEGAL -->
+
+      <section
+        class="settings-section"
+        id="legal"
+      >
+
+        <div class="settings-card">
+
+          <div class="card-header">
+
+            <div class="card-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <div>
+              <h2>Legal & Policies</h2>
+              <p class="card-description">
+                Important information about using Pathaan Collection.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="link-grid">
+
+            <a
+              class="support-link"
+              href="/policy.html#privacy-policy"
+            >
+
+              <i class="fa-solid fa-lock"></i>
+
+              <div>
+
+                <strong>Privacy Policy</strong>
+
+                <span>
+                  How your information is handled
+                </span>
+
+              </div>
+
+            </a>
+
+
+            <a
+              class="support-link"
+              href="/terms.html"
+            >
+
+              <i class="fa-solid fa-file-contract"></i>
+
+              <div>
+
+                <strong>Terms & Conditions</strong>
+
+                <span>
+                  Terms for using our website
+                </span>
+
+              </div>
+
+            </a>
+
+
+            <a
+              class="support-link"
+              href="/policy.html#return-refund-policy"
+            >
+
+              <i class="fa-solid fa-rotate-left"></i>
+
+              <div>
+
+                <strong>Return & Refund Policy</strong>
+
+                <span>
+                  Returns, refunds and exchanges
+                </span>
+
+              </div>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<script src="/toast.js"></script>
+<script src="/config.js"></script>
+
+
+<script>
+
+  /*
+   * EXISTING BACKEND CONNECTIONS ARE KEPT.
+   * Do not change API endpoints.
+   */
+
+  const preferenceKey = "pathaanSettings";
+
+  const languagePreference =
+    document.getElementById("languagePreference");
+
+  const currencyPreference =
+    document.getElementById("currencyPreference");
+
+  let addresses = [];
+  let editingAddressId = "";
+
+
+  /* ----------------------------------
+     LOCAL SETTINGS
+  ---------------------------------- */
+
+  function readLocalSettings() {
+
+    try {
+
+      return JSON.parse(
+        localStorage.getItem(preferenceKey) || "{}"
+      );
+
+    } catch (error) {
+
+      return {};
+
+    }
+
+  }
+
+
+  function saveSitePreference(values) {
+
+    if (
+      typeof window.saveSitePreferences === "function"
+    ) {
+
+      window.saveSitePreferences(values);
+
+    } else {
+
+      localStorage.setItem(
+        preferenceKey,
+        JSON.stringify({
+          ...readLocalSettings(),
+          ...values
+        })
+      );
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     ACCOUNT PREFERENCE
+  ---------------------------------- */
+
+  async function saveAccountPreference(values, label) {
+
+    saveSitePreference(values);
+
+    if (!getToken()) {
+
+      showToast(
+        `${label} saved on this browser.`,
+        "success"
+      );
+
+      return;
+
+    }
+
+
+    try {
+
+      const response = await fetch(
+        API_BASE + "/api/profile/preferences",
+        {
+          method: "PUT",
+
+          headers: {
+            "Content-Type": "application/json",
+            ...getAuthHeader()
+          },
+
+          body: JSON.stringify(values)
+        }
+      );
+
+
+      const result =
+        await response.json().catch(() => ({}));
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          result.msg ||
+          `Could not save ${label}.`
+        );
+
+      }
+
+
+      showToast(
+        result.msg ||
+        `${label} saved successfully.`,
+        "success"
+      );
+
+
+    } catch (error) {
+
+      showToast(
+        `${label} saved locally, but account sync failed.`,
+        "error"
+      );
+
+    }
+
+  }
+
+
+  function setLanguage(language) {
+
+    document.documentElement.lang =
+      language;
+
+    document.title =
+      language === "hi"
+        ? "सेटिंग्स | Pathaan Collection"
+        : "Settings | Pathaan Collection";
+
+  }
+
+
+  /* ----------------------------------
+     LOAD LOCAL SETTINGS
+  ---------------------------------- */
+
+  function loadLocalSettings() {
+
+    const saved =
+      readLocalSettings();
+
+
+    languagePreference.value =
+      ["en", "hi"].includes(saved.language)
+        ? saved.language
+        : "en";
+
+
+    currencyPreference.value =
+      ["INR", "USD"].includes(saved.currency)
+        ? saved.currency
+        : "INR";
+
+
+    document.getElementById(
+      "orderUpdates"
+    ).checked =
+      saved.orderUpdates === true;
+
+
+    document.getElementById(
+      "offersPromotions"
+    ).checked =
+      saved.offersPromotions === true;
+
+
+    setLanguage(
+      languagePreference.value
+    );
+
+  }
+
+
+  /* ----------------------------------
+     NAVIGATION
+  ---------------------------------- */
+
+  const navButtons =
+    document.querySelectorAll(
+      ".nav-button"
+    );
+
+  const sections =
+    document.querySelectorAll(
+      ".settings-section"
+    );
+
+
+  navButtons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        const target =
+          button.dataset.section;
+
+
+        navButtons.forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+
+        sections.forEach(section =>
+          section.classList.remove("active")
+        );
+
+
+        button.classList.add("active");
+
+
+        document
+          .getElementById(target)
+          .classList.add("active");
+
+      }
+    );
+
+  });
+
+
+  /* ----------------------------------
+     LANGUAGE
+  ---------------------------------- */
+
+  document
+    .getElementById("saveLanguage")
+    .addEventListener(
+      "click",
+      () => {
+
+        setLanguage(
+          languagePreference.value
+        );
+
+
+        saveAccountPreference(
+          {
+            language:
+              languagePreference.value
+          },
+          "Language"
+        );
+
+      }
+    );
+
+
+  /* ----------------------------------
+     CURRENCY
+  ---------------------------------- */
+
+  document
+    .getElementById("saveCurrency")
+    .addEventListener(
+      "click",
+      () => {
+
+        saveAccountPreference(
+          {
+            currency:
+              currencyPreference.value
+          },
+          "Currency"
+        );
+
+      }
+    );
+
+
+  /* ----------------------------------
+     NOTIFICATIONS
+  ---------------------------------- */
+
+  document
+    .getElementById("saveNotifications")
+    .addEventListener(
+      "click",
+      async event => {
+
+        const notifications = {
+
+          orderUpdates:
+            document.getElementById(
+              "orderUpdates"
+            ).checked,
+
+          offersPromotions:
+            document.getElementById(
+              "offersPromotions"
+            ).checked
+
+        };
+
+
+        localStorage.setItem(
+          preferenceKey,
+          JSON.stringify({
+            ...readLocalSettings(),
+            ...notifications
+          })
+        );
+
+
+        if (!getToken()) {
+
+          showToast(
+            "Notification preferences saved.",
+            "success"
+          );
+
+          return;
+
+        }
+
+
+        const button =
+          event.currentTarget;
+
+
+        button.disabled = true;
+
+
+        try {
+
+          const response =
+            await fetch(
+              API_BASE +
+              "/api/profile/preferences",
+              {
+                method: "PUT",
+
+                headers: {
+                  "Content-Type":
+                    "application/json",
+
+                  ...getAuthHeader()
+                },
+
+                body:
+                  JSON.stringify({
+                    notifications
+                  })
+              }
+            );
+
+
+          const result =
+            await response
+              .json()
+              .catch(() => ({}));
+
+
+          if (!response.ok) {
+
+            throw new Error(
+              result.msg ||
+              "Could not save preferences."
+            );
+
+          }
+
+
+          document
+            .getElementById(
+              "notificationStatus"
+            )
+            .textContent =
+              "Saved ✓";
+
+
+          showToast(
+            result.msg ||
+            "Notification preferences saved.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          showToast(
+            error.message ||
+            "Could not save notifications.",
+            "error"
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+        }
+
+      }
+    );
+
+
+  /* ----------------------------------
+     ADDRESS STATUS
+  ---------------------------------- */
+
+  function setAddressStatus(
+    message,
+    isError = false
+  ) {
+
+    const status =
+      document.getElementById(
+        "addressStatus"
+      );
+
+
+    status.textContent =
+      message;
+
+
+    status.style.color =
+      isError
+        ? "#f4a1a1"
+        : "";
+
+  }
+
+
+  function updateDefaultAddressCache() {
+
+    const selected =
+      addresses.find(
+        address =>
+          address.isDefault
+      );
+
+
+    if (selected) {
+
+      localStorage.setItem(
+        "userAddress",
+        selected.address || ""
+      );
+
+
+      if (selected.name) {
+
+        localStorage.setItem(
+          "userName",
+          selected.name
+        );
+
+      }
+
+
+      if (selected.phone) {
+
+        localStorage.setItem(
+          "userPhone",
+          selected.phone
+        );
+
+      }
+
+    } else {
+
+      localStorage.removeItem(
+        "userAddress"
+      );
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     RENDER ADDRESS
+  ---------------------------------- */
+
+  function renderAddresses() {
+
+    const list =
+      document.getElementById(
+        "addressList"
+      );
+
+
+    list.replaceChildren();
+
+
+    if (!addresses.length) {
+
+      const empty =
+        document.createElement("p");
+
+
+      empty.className =
+        "privacy-note";
+
+
+      empty.textContent =
+        getToken()
+          ? "No saved addresses yet."
+          : "Sign in to manage delivery addresses.";
+
+
+      list.append(empty);
+
+      return;
+
+    }
+
+
+    for (const address of addresses) {
+
+      const card =
+        document.createElement(
+          "article"
+        );
+
+
+      card.className =
+        "address-item";
+
+
+      const header =
+        document.createElement(
+          "div"
+        );
+
+
+      header.className =
+        "address-item-header";
+
+
+      const title =
+        document.createElement(
+          "div"
+        );
+
+
+      title.className =
+        "address-title";
+
+
+      const icon =
+        document.createElement(
+          "i"
+        );
+
+
+      icon.className =
+        address.label === "Work"
+          ? "fa-solid fa-briefcase"
+          : "fa-solid fa-house";
+
+
+      const titleText =
+        document.createElement(
+          "strong"
+        );
+
+
+      titleText.textContent =
+        address.label ||
+        "Address";
+
+
+      title.append(
+        icon,
+        titleText
+      );
+
+
+      header.append(title);
+
+
+      if (address.isDefault) {
+
+        const badge =
+          document.createElement(
+            "span"
+          );
+
+
+        badge.className =
+          "address-badge";
+
+
+        badge.textContent =
+          "Default";
+
+
+        header.append(badge);
+
+      }
+
+
+      const details =
+        document.createElement(
+          "p"
+        );
+
+
+      details.textContent = [
+
+        address.name,
+        address.phone,
+        address.address,
+
+        [
+          address.city,
+          address.state,
+          address.pincode
+        ]
+          .filter(Boolean)
+          .join(", ")
+
+      ]
+        .filter(Boolean)
+        .join(" • ");
+
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+
+      actions.className =
+        "address-actions";
+
+
+      if (!address.isDefault) {
+
+        const defaultButton =
+          document.createElement(
+            "button"
+          );
+
+
+        defaultButton.type =
+          "button";
+
+
+        defaultButton.className =
+          "secondary-button";
+
+
+        defaultButton.innerHTML =
+          '<i class="fa-solid fa-star"></i> Default';
+
+
+        defaultButton.addEventListener(
+          "click",
+          () =>
+            setDefaultAddress(
+              address._id
+            )
+        );
+
+
+        actions.append(
+          defaultButton
+        );
+
+      }
+
+
+      const editButton =
+        document.createElement(
+          "button"
+        );
+
+
+      editButton.type =
+        "button";
+
+
+      editButton.className =
+        "secondary-button";
+
+
+      editButton.innerHTML =
+        '<i class="fa-solid fa-pen"></i> Edit';
+
+
+      editButton.addEventListener(
+        "click",
+        () =>
+          openAddressForm(address)
+      );
+
+
+      const deleteButton =
+        document.createElement(
+          "button"
+        );
+
+
+      deleteButton.type =
+        "button";
+
+
+      deleteButton.className =
+        "danger-button";
+
+
+      deleteButton.innerHTML =
+        '<i class="fa-solid fa-trash"></i> Delete';
+
+
+      deleteButton.addEventListener(
+        "click",
+        () =>
+          deleteAddress(
+            address._id
+          )
+      );
+
+
+      actions.append(
+        editButton,
+        deleteButton
+      );
+
+
+      card.append(
+        header,
+        details,
+        actions
+      );
+
+
+      list.append(card);
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     ADDRESS API
+  ---------------------------------- */
+
+  async function requestAddresses(
+    path,
+    options = {}
+  ) {
+
+    const response =
+      await fetch(
+        API_BASE +
+        "/api/profile/addresses" +
+        path,
+        {
+          ...options,
+
+          headers: {
+            ...(options.body
+              ? {
+                  "Content-Type":
+                    "application/json"
+                }
+              : {}),
+
+            ...getAuthHeader(),
+
+            ...options.headers
+          }
+        }
+      );
+
+
+    const result =
+      await response
+        .json()
+        .catch(() => ({}));
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        result.msg ||
+        "Address request failed."
+      );
+
+    }
+
+
+    return result;
+
+  }
+
+
+  async function loadAddresses() {
+
+    if (!getToken()) {
+
+      addresses = [];
+
+      renderAddresses();
+
+      return;
+
+    }
+
+
+    try {
+
+      const result =
+        await requestAddresses("");
+
+
+      addresses =
+        Array.isArray(
+          result.addresses
+        )
+          ? result.addresses
+          : [];
+
+
+      updateDefaultAddressCache();
+
+      renderAddresses();
+
+      setAddressStatus("");
+
+
+    } catch (error) {
+
+      setAddressStatus(
+        error.message ||
+        "Could not load addresses.",
+        true
+      );
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     OPEN ADDRESS FORM
+  ---------------------------------- */
+
+  function openAddressForm(address) {
+
+    if (!getToken()) {
+
+      showToast(
+        "Please sign in to manage addresses.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    editingAddressId =
+      address
+        ? String(address._id)
+        : "";
+
+
+    const form =
+      document.getElementById(
+        "addressForm"
+      );
+
+
+    form.reset();
+
+
+    const fields = {
+
+      label: "addressLabel",
+      name: "addressName",
+      phone: "addressPhone",
+      address: "addressLine",
+      city: "addressCity",
+      state: "addressState",
+      pincode: "addressPincode"
+
+    };
+
+
+    for (const key in fields) {
+
+      const input =
+        document.getElementById(
+          fields[key]
+        );
+
+
+      input.value =
+        address
+          ? (
+              address[key] ||
+              (
+                key === "label"
+                  ? "Home"
+                  : ""
+              )
+            )
+          : (
+              key === "label"
+                ? "Home"
+                : ""
+            );
+
+    }
+
+
+    document.getElementById(
+      "addressDefault"
+    ).checked =
+      address
+        ? Boolean(address.isDefault)
+        : addresses.length === 0;
+
+
+    document.getElementById(
+      "saveAddressButton"
+    ).textContent =
+      address
+        ? "Update Address"
+        : "Save Address";
+
+
+    form.hidden = false;
+
+
+    document.getElementById(
+      "addressName"
+    ).focus();
+
+  }
+
+
+  /* ----------------------------------
+     DEFAULT ADDRESS
+  ---------------------------------- */
+
+  async function setDefaultAddress(
+    addressId
+  ) {
+
+    try {
+
+      const result =
+        await requestAddresses(
+          `/${encodeURIComponent(
+            addressId
+          )}/default`,
+          {
+            method: "PUT"
+          }
+        );
+
+
+      addresses =
+        result.addresses || [];
+
+
+      updateDefaultAddressCache();
+
+      renderAddresses();
+
+
+      showToast(
+        result.msg ||
+        "Default address updated.",
+        "success"
+      );
+
+
+    } catch (error) {
+
+      showToast(
+        error.message ||
+        "Could not update address.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     DELETE ADDRESS
+  ---------------------------------- */
+
+  async function deleteAddress(
+    addressId
+  ) {
+
+    if (
+      !confirm(
+        "Are you sure you want to delete this address?"
+      )
+    ) {
+
+      return;
+
+    }
+
+
+    try {
+
+      const result =
+        await requestAddresses(
+          `/${encodeURIComponent(
+            addressId
+          )}`,
+          {
+            method: "DELETE"
+          }
+        );
+
+
+      addresses =
+        result.addresses || [];
+
+
+      updateDefaultAddressCache();
+
+      renderAddresses();
+
+
+      showToast(
+        result.msg ||
+        "Address deleted successfully.",
+        "success"
+      );
+
+
+    } catch (error) {
+
+      showToast(
+        error.message ||
+        "Could not delete address.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     ACCOUNT STATE
+  ---------------------------------- */
+
+  async function loadAccountState() {
+
+    const signedIn =
+      Boolean(getToken());
+
+
+    document.getElementById(
+      "signedInState"
+    ).hidden =
+      !signedIn;
+
+
+    document.getElementById(
+      "signedOutState"
+    ).hidden =
+      signedIn;
+
+
+    document.getElementById(
+      "passwordForm"
+    ).hidden =
+      !signedIn;
+
+    document.getElementById(
+      "emailPasswordReset"
+    ).hidden =
+      !signedIn;
+
+
+    document.getElementById(
+      "signOutButton"
+    ).hidden =
+      !signedIn;
+
+
+    document.getElementById(
+      "addAddressButton"
+    ).hidden =
+      !signedIn;
+
+
+    if (!signedIn) {
+
+      await loadAddresses();
+
+      return;
+
+    }
+
+
+    try {
+
+      const response =
+        await fetch(
+          API_BASE + "/api/profile",
+          {
+            headers:
+              getAuthHeader()
+          }
+        );
+
+
+      const account =
+        await response
+          .json()
+          .catch(() => ({}));
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          account.msg ||
+          "Could not load account."
+        );
+
+      }
+
+
+      document.getElementById(
+        "accountEmail"
+      ).textContent =
+        account.email ||
+        "Your account";
+
+      document.getElementById(
+        "passwordResetEmail"
+      ).textContent =
+        account.email ||
+        "your account email";
+
+
+      if (
+        ["en", "hi"].includes(
+          account.language
+        )
+      ) {
+
+        languagePreference.value =
+          account.language;
+
+      }
+
+
+      if (
+        ["INR", "USD"].includes(
+          account.currency
+        )
+      ) {
+
+        currencyPreference.value =
+          account.currency;
+
+      }
+
+
+      const notifications =
+        account.notifications || {};
+
+
+      document.getElementById(
+        "orderUpdates"
+      ).checked =
+        Boolean(
+          notifications.orderUpdates
+        );
+
+
+      document.getElementById(
+        "offersPromotions"
+      ).checked =
+        Boolean(
+          notifications.offersPromotions
+        );
+
+
+      setLanguage(
+        languagePreference.value
+      );
+
+
+      saveSitePreference({
+
+        language:
+          languagePreference.value,
+
+        currency:
+          currencyPreference.value
+
+      });
+
+
+      await loadAddresses();
+
+
+    } catch (error) {
+
+      showToast(
+        error.message ||
+        "Could not load account.",
+        "error"
+      );
+
+    }
+
+  }
+
+
+  /* ----------------------------------
+     PASSWORD
+  ---------------------------------- */
+
+  document
+    .getElementById("passwordForm")
+    .addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+        const form = event.currentTarget;
+
+
+        const currentPassword =
+          document.getElementById(
+            "currentPassword"
+          ).value;
+
+
+        const newPassword =
+          document.getElementById(
+            "newPassword"
+          ).value;
+
+
+        const confirmPassword =
+          document.getElementById(
+            "confirmPassword"
+          ).value;
+
+
+        if (
+          newPassword !==
+          confirmPassword
+        ) {
+
+          showToast(
+            "New passwords do not match.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (newPassword.length < 6) {
+
+          showToast(
+            "Password must contain at least 6 characters.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const button =
+          document.getElementById(
+            "changePasswordButton"
+          );
+
+
+        button.disabled = true;
+
+
+        try {
+
+          const response =
+            await fetch(
+              API_BASE +
+              "/api/profile/password",
+              {
+                method: "PUT",
+
+                headers: {
+                  "Content-Type":
+                    "application/json",
+
+                  ...getAuthHeader()
+                },
+
+                body:
+                  JSON.stringify({
+                    currentPassword,
+                    newPassword
+                  })
+              }
+            );
+
+
+          const result =
+            await response
+              .json()
+              .catch(() => ({}));
+
+
+          if (!response.ok) {
+
+            throw new Error(
+              result.msg ||
+              "Password update failed."
+            );
+
+          }
+
+
+          form.reset();
+
+
+          showToast(
+            result.msg ||
+            "Password updated successfully.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          showToast(
+            error.message ||
+            "Could not update password.",
+            "error"
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+        }
+
+      }
+    );
+
+  document
+    .getElementById("sendPasswordResetCodeButton")
+    .addEventListener("click", async event => {
+      const button = event.currentTarget;
+      button.disabled = true;
+      try {
+        const response = await fetch(API_BASE + "/api/auth/password-reset/request", {
+          method: "POST",
+          headers: getAuthHeader()
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(result.msg || "Could not send password reset email.");
+        }
+        document.getElementById("passwordResetForm").hidden = false;
+        document.getElementById("passwordResetCode").focus();
+        showToast(result.msg || "A password reset code was sent to your email.", "success");
+      } catch (error) {
+        showToast(error.message || "Could not send password reset email.", "error");
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+  document
+    .getElementById("passwordResetForm")
+    .addEventListener("submit", async event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const code = document.getElementById("passwordResetCode").value.trim();
+      const password = document.getElementById("emailResetNewPassword").value;
+      const confirmPassword = document.getElementById("emailResetConfirmPassword").value;
+      if (!/^\d{6}$/.test(code)) {
+        showToast("Enter the 6-digit code from your email.", "error");
+        return;
+      }
+      if (password.length < 6) {
+        showToast("Password must contain at least 6 characters.", "error");
+        return;
+      }
+      if (password !== confirmPassword) {
+        showToast("New passwords do not match.", "error");
+        return;
+      }
+
+      const button = document.getElementById("confirmPasswordResetButton");
+      button.disabled = true;
+      try {
+        const response = await fetch(API_BASE + "/api/auth/password-reset/confirm", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...getAuthHeader() },
+          body: JSON.stringify({ code, password })
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(result.msg || "Password reset failed.");
+        }
+        form.reset();
+        form.hidden = true;
+        showToast(result.msg || "Password reset successfully.", "success");
+      } catch (error) {
+        showToast(error.message || "Password reset failed.", "error");
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+
+  /* ----------------------------------
+     LOGOUT
+  ---------------------------------- */
+
+  document
+    .getElementById("signOutButton")
+    .addEventListener(
+      "click",
+      () => {
+
+        if (
+          confirm(
+            "Are you sure you want to logout?"
+          )
+        ) {
+
+          logout();
+
+        }
+
+      }
+    );
+
+
+  /* ----------------------------------
+     ADD ADDRESS
+  ---------------------------------- */
+
+  document
+    .getElementById("addAddressButton")
+    .addEventListener(
+      "click",
+      () =>
+        openAddressForm()
+    );
+
+
+  /* ----------------------------------
+     CANCEL ADDRESS
+  ---------------------------------- */
+
+  document
+    .getElementById("cancelAddressButton")
+    .addEventListener(
+      "click",
+      () => {
+
+        document.getElementById(
+          "addressForm"
+        ).hidden = true;
+
+
+        editingAddressId = "";
+
+      }
+    );
+
+
+  /* ----------------------------------
+     SAVE ADDRESS
+  ---------------------------------- */
+
+  document
+    .getElementById("addressForm")
+    .addEventListener(
+      "submit",
+      async event => {
+
+        event.preventDefault();
+
+
+        if (!getToken()) {
+
+          showToast(
+            "Please sign in first.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const address = {
+
+          label:
+            document.getElementById(
+              "addressLabel"
+            ).value,
+
+          name:
+            document.getElementById(
+              "addressName"
+            ).value.trim(),
+
+          phone:
+            document.getElementById(
+              "addressPhone"
+            ).value.trim(),
+
+          address:
+            document.getElementById(
+              "addressLine"
+            ).value.trim(),
+
+          city:
+            document.getElementById(
+              "addressCity"
+            ).value.trim(),
+
+          state:
+            document.getElementById(
+              "addressState"
+            ).value.trim(),
+
+          pincode:
+            document.getElementById(
+              "addressPincode"
+            ).value.trim(),
+
+          isDefault:
+            document.getElementById(
+              "addressDefault"
+            ).checked
+
+        };
+
+
+        const button =
+          document.getElementById(
+            "saveAddressButton"
+          );
+
+
+        button.disabled = true;
+
+
+        try {
+
+          const path =
+            editingAddressId
+              ? `/${encodeURIComponent(
+                  editingAddressId
+                )}`
+              : "";
+
+
+          const result =
+            await requestAddresses(
+              path,
+              {
+
+                method:
+                  editingAddressId
+                    ? "PUT"
+                    : "POST",
+
+                body:
+                  JSON.stringify(
+                    address
+                  )
+
+              }
+            );
+
+
+          addresses =
+            result.addresses || [];
+
+
+          updateDefaultAddressCache();
+
+          renderAddresses();
+
+
+          document.getElementById(
+            "addressForm"
+          ).hidden = true;
+
+
+          editingAddressId = "";
+
+
+          showToast(
+            result.msg ||
+            "Address saved successfully.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          showToast(
+            error.message ||
+            "Could not save address.",
+            "error"
+          );
+
+        } finally {
+
+          button.disabled = false;
+
+        }
+
+      }
+    );
+
+
+  /* ----------------------------------
+     START
+  ---------------------------------- */
+
+  loadLocalSettings();
+
+  renderAddresses();
+
+  loadAccountState();
+
+</script>
+
+</body>
+</html>

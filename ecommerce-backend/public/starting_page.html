@@ -1,0 +1,258 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pathaan Collection</title>
+  <script src="/config.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: black;
+      overflow-x: hidden;
+    }
+
+    /* header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 12px 5px;
+      background: black;
+      height: 50px;
+    }
+
+    /* logo */
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #c7a46a;
+      box-shadow: 0 0 10px rgba(199, 164, 106, 0.45);
+    }
+
+    /* intro screen */
+    .intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    /* Premium logo reveal */
+    .intro-mark {
+      position: relative;
+      width: 132px;
+      height: 132px;
+      display: grid;
+      place-items: center;
+      animation: markReveal 1.2s cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .intro-mark::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      padding: 2px;
+      background: conic-gradient(from 0deg, transparent 0 58%, #ead6aa 72%, #c7a46a 82%, transparent 96%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: markSpin 3s linear infinite;
+    }
+
+    .intro-mark::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      box-shadow: 0 0 28px rgba(234, 214, 170, 0.3), inset 0 0 18px rgba(199, 164, 106, 0.16);
+      animation: markGlow 2s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .intro-logo {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(234, 214, 170, 0.85);
+      box-shadow: 0 0 22px rgba(199, 164, 106, 0.45);
+    }
+
+    @keyframes markReveal {
+      from { transform: scale(.65) rotate(-12deg); opacity: 0; filter: blur(5px); }
+      to { transform: scale(1) rotate(0); opacity: 1; filter: blur(0); }
+    }
+
+    @keyframes markSpin { to { transform: rotate(360deg); } }
+    @keyframes markGlow {
+      from { opacity: .55; transform: scale(.96); }
+      to { opacity: 1; transform: scale(1.04); }
+    }
+
+    /* text */
+    .intro-text {
+      margin-top: 20px;
+      font-size: 30px;
+      color: #e4c990;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: textFade 2s ease-in-out 1s forwards;
+    }
+
+    .intro-sub {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #aaa;
+      opacity: 0;
+      animation: textFade 2s ease-in-out 1.8s forwards;
+    }
+
+    .intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: bgZoom 10s ease infinite;
+
+      /* background image */
+      background:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://images.unsplash.com/photo-1441986300917-64674bd600d8");
+
+      background-size: cover;
+      background-position: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: 1s;
+    }
+
+
+    /* animations */
+    @keyframes logoZoom {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bgZoom{
+
+  0%{
+    background-size:100%;
+  }
+
+  50%{
+    background-size:110%;
+  }
+
+  100%{
+    background-size:100%;
+  }
+
+}
+
+    @keyframes textFade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* hidden main content */
+    .main {
+      display: none;
+      text-align: center;
+      color: white;
+      padding: 50px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <img src="image/logo.png" class="logo">
+  </header>
+
+  <!-- Intro Animation -->
+  <div class="intro">
+    <div class="intro-mark">
+      <img src="image/logo.png" class="intro-logo" alt="Pathaan Collection PK logo">
+    </div>
+    <div class="intro-text">Pathaan Collection</div>
+    <div class="intro-sub" id="typing"></div>
+  </div>
+
+  <script>
+    // 5 sec baad redirect
+    setTimeout(function () {
+
+  document.querySelector(".intro").style.opacity = "0";
+
+  setTimeout(() => {
+
+    window.location.href = "shop.html";
+
+  }, 1000);
+
+}, 4000);
+
+const text = "Preparing your premium style...";
+let i = 0;
+
+function typing(){
+
+   if(i < text.length){
+
+      document.getElementById("typing").innerHTML += text.charAt(i);
+
+      i++;
+
+      setTimeout(typing, 60);
+
+   }
+
+}
+
+typing();
+
+  </script>
+
+</body>
+
+</html>

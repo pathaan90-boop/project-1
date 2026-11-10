@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Orders Management | Pathaan Collection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<script src="/config.js"></script>
+<script>
+if (!getToken() || localStorage.getItem("isAdmin") !== "true") {
+  window.location.href = "/login";
+}
+</script>
+<style>
+:root{
+  --primary:#d8b576;
+  --dark:#11100e;
+  --dark2:#191714;
+  --card:#24211c;
+  --text:#f4efe5;
+  --gray:#b9b09f;
+  --cyan:#d8b576;
+  --green:#10b981;
+  --red:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{
+  background:var(--dark);
+  color:var(--text);
+  padding:24px 20px;
+  min-height:100vh;
+}
+.header{
+  max-width:1100px;
+  margin:0 auto 24px auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.header h1{
+  color:var(--cyan);
+  font-size:24px;
+}
+.filter-bar{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.filter-btn{
+  background:var(--dark2);
+  border:1px solid rgba(255,255,255,0.1);
+  color:var(--gray);
+  padding:8px 14px;
+  border-radius:10px;
+  font-size:13px;
+  cursor:pointer;
+  transition:0.2s;
+}
+.filter-btn.active{
+  background:var(--primary);
+  color:#211b13;
+  border-color:var(--primary);
+}
+.orders-grid{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(330px, 1fr));
+  gap:20px;
+}
+.order-card{
+  background:var(--dark2);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.order-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  padding-bottom:10px;
+}
+.order-id{
+  font-weight:bold;
+  font-size:14px;
+  color:var(--cyan);
+}
+.status-pill{
+  padding:4px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+.status-pending{background:rgba(199,164,106,0.18);color:#e4c990}
+.status-shipped{background:rgba(59,130,246,0.2);color:#60a5fa}
+.status-delivered{background:rgba(16,185,129,0.2);color:var(--green)}
+.status-cancelled{background:rgba(239,68,68,0.2);color:var(--red)}
+
+.item-preview{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.item-preview img{
+  width:60px;
+  height:60px;
+  border-radius:10px;
+  object-fit:cover;
+  background:#000;
+}
+.cust-info{
+  background:rgba(0,0,0,0.3);
+  padding:12px;
+  border-radius:10px;
+  font-size:12px;
+  color:var(--gray);
+  line-height:1.5;
+}
+.cust-info b{color:#fff}
+.actions-row{
+  display:flex;
+  gap:10px;
+  margin-top:auto;
+  align-items:center;
+}
+select{
+  flex:1;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,0.15);
+  color:#fff;
+  padding:8px 10px;
+  border-radius:8px;
+  font-size:13px;
+  outline:none;
+}
+.btn-otp{
+  background:linear-gradient(135deg,#e1c98e,#c7a46a 58%,#a98245);
+  border:none;
+  color:#211b13;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:12px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>📦 Orders Master Panel</h1>
+    <a href="/admin" style="color:var(--gray);font-size:13px;text-decoration:none"><i class="fa-solid fa-arrow-left"></i> Back to Admin Dashboard</a>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterStatus('All', this)">All</button>
+    <button class="filter-btn" onclick="filterStatus('Pending', this)">Pending</button>
+    <button class="filter-btn" onclick="filterStatus('Shipped', this)">Shipped</button>
+    <button class="filter-btn" onclick="filterStatus('Delivered', this)">Delivered</button>
+    <button class="filter-btn" onclick="filterStatus('Cancelled', this)">Cancelled</button>
+  </div>
+</div>
+
+<div class="orders-grid" id="ordersContainer">
+  <p style="color:var(--gray)">Loading orders...</p>
+</div>
+
+<script src="/toast.js"></script>
+<script>
+let allOrders = [];
+let activeFilter = "All";
+
+window.addEventListener("DOMContentLoaded", loadOrders);
+
+async function loadOrders() {
+  try {
+    const res = await fetch(API_BASE + "/api/orders", {
+      headers: getAuthHeader()
+    });
+    if (!res.ok) throw new Error("Could not fetch orders. Make sure you are logged in as admin.");
+    allOrders = await res.json();
+    renderOrders();
+  } catch (e) {
+    showToast(e.message || "Failed to load orders", "error");
+    document.getElementById("ordersContainer").innerHTML = `<p style="color:red">${e.message}</p>`;
+  }
+}
+
+function filterStatus(status, el) {
+  activeFilter = status;
+  document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+  if (el) el.classList.add("active");
+  renderOrders();
+}
+
+function renderOrders() {
+  const container = document.getElementById("ordersContainer");
+  const filtered = activeFilter === "All" ? allOrders : allOrders.filter(o => o.status === activeFilter);
+
+  if (!filtered.length) {
+    container.innerHTML = `<p style="color:var(--gray);grid-column:1/-1;text-align:center;padding:40px">No orders found under "${activeFilter}".</p>`;
+    return;
+  }
+
+  container.innerHTML = filtered.map(o => {
+    const statusClass = `status-${(o.status || 'pending').toLowerCase()}`;
+    const imgUrl = getProductImageUrl(o.image || (o.items?.[0]?.image));
+    const title = o.name || (o.items?.[0]?.name) || "Store Item";
+    const total = o.totalAmount || o.price || 0;
+
+    return `
+      <div class="order-card">
+        <div class="order-header">
+          <span class="order-id">#${o._id.slice(-6).toUpperCase()}</span>
+          <span class="status-pill ${statusClass}">${o.status}</span>
+        </div>
+
+        <div class="item-preview">
+          <img src="${imgUrl}" alt="${escapeHtml(title)}">
+          <div>
+            <div style="font-weight:600;font-size:14px">${escapeHtml(title)}</div>
+            <div style="color:var(--primary);font-weight:bold;margin-top:2px">${formatPrice(total)}</div>
+            <div style="font-size:11px;color:var(--gray)">Method: ${o.paymentMethod || 'COD'} | ${o.paymentStatus || 'Pending'}</div>
+          </div>
+        </div>
+
+        <div class="cust-info">
+          <div><b>Customer:</b> ${escapeHtml(o.customerName || 'N/A')}</div>
+          <div><b>Phone:</b> ${escapeHtml(o.phone || 'N/A')}</div>
+          <div><b>Address:</b> ${escapeHtml(o.address || 'N/A')}</div>
+          <div style="color:var(--cyan);margin-top:4px"><b>Delivery verification:</b> ${o.otpVerified ? 'Verified' : o.deliveryOtpEmailSentAt ? 'OTP emailed to customer' : 'OTP emailed when shipped'}</div>
+        </div>
+
+        ${(o.returnRequests || []).length ? `
+          <div class="cust-info" style="border:1px solid rgba(216,181,118,.2)">
+            <div style="color:var(--cyan);font-weight:700;margin-bottom:8px">Return Requests (${o.returnRequests.length})</div>
+            ${o.returnRequests.map(request => {
+              const nextStatuses = {
+                Requested: ["Approved", "Rejected"],
+                Approved: ["Received", "Rejected"],
+                Received: ["Refunded"]
+              }[request.status || "Requested"];
+              return `
+              <div style="padding:8px 0;border-top:1px solid rgba(255,255,255,.08)">
+                <div style="display:flex;align-items:center;gap:10px">
+                  ${request.productImage ? `<img src="${getProductImageUrl(request.productImage)}" alt="" style="width:46px;height:52px;object-fit:cover;border-radius:6px">` : ""}
+                  <div><b>${escapeHtml(request.productName || "Returned product")}</b> · Qty ${Number(request.quantity) || 1}</div>
+                </div>
+                <div>Size: ${escapeHtml(request.size || "M")} · Color: ${escapeHtml(request.color || "Default")}</div>
+                <div><b>Reason:</b> ${escapeHtml(request.reason || "Not specified")}</div>
+                <div><b>Details:</b> ${escapeHtml(request.details || "Not provided")}</div>
+                <div style="color:var(--cyan)"><b>Request status:</b> ${escapeHtml(request.status || "Requested")}</div>
+                ${nextStatuses ? `
+                  <label style="display:flex;align-items:center;gap:8px;margin-top:8px;font-size:12px">
+                    Update return:
+                    <select onchange="changeReturnRequestStatus('${o._id}', '${request._id}', this.value)">
+                      <option value="">Choose action</option>
+                      ${nextStatuses.map(status => `<option value="${status}">${status}</option>`).join("")}
+                    </select>
+                  </label>
+                  ${request.status === "Received" ? '<div style="font-size:11px;color:var(--gray);margin-top:5px">Only mark Refunded after completing the customer refund.</div>' : ""}
+                ` : '<div style="font-size:11px;color:var(--gray);margin-top:6px">Return request closed.</div>'}
+              </div>
+              `;
+            }).join("")}
+          </div>
+        ` : ""}
+
+        <div class="actions-row">
+          <select onchange="changeStatus('${o._id}', this.value)">
+            <option value="Pending" ${o.status === "Pending" ? "selected" : ""}>Pending</option>
+            <option value="Shipped" ${o.status === "Shipped" ? "selected" : ""}>Shipped</option>
+            <option value="Delivered" ${o.status === "Delivered" ? "selected" : ""}>Delivered</option>
+            <option value="Cancelled" ${o.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+          </select>
+          ${o.status === "Delivered" || o.otpVerified
+            ? '<span style="color:#10b981;font-weight:700">Delivery verified</span>'
+            : o.status === "Shipped" && o.deliveryOtpEmailSentAt
+              ? `<label style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span style="font-size:12px;color:var(--cyan);font-weight:700">Customer OTP (emailed after shipping)</span>
+                  <input id="delivery-otp-${o._id}" type="text" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit OTP" aria-label="Enter 6-digit delivery OTP" style="width:125px;padding:8px;border-radius:8px">
+                  <button class="btn-otp" onclick="verifyOtpPrompt('${o._id}')">Verify OTP &amp; Deliver</button>
+                </label>`
+              : '<span style="font-size:12px;color:var(--gray)">Ship the order to email its delivery OTP; then enter it here.</span>'}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+async function changeReturnRequestStatus(orderId, returnRequestId, status) {
+  if (!status) return;
+  try {
+    const res = await fetch(API_BASE + `/api/orders/${orderId}/return/${returnRequestId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", ...getAuthHeader() },
+      body: JSON.stringify({ status })
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.msg || "Failed to update return request");
+    showToast(data.msg || "Return request updated", "success");
+    await loadOrders();
+  } catch (error) {
+    showToast(error.message || "Failed to update return request", "error");
+    renderOrders();
+  }
+}
+
+async function changeStatus(id, newStatus) {
+  try {
+    const res = await fetch(API_BASE + `/api/orders/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json", ...getAuthHeader() },
+      body: JSON.stringify({ status: newStatus })
+    });
+    const d = await res.json();
+    if (res.ok) {
+      showToast("Order status updated!", "success");
+      loadOrders();
+    } else {
+      showToast(d.msg || "Failed to update", "error");
+    }
+  } catch (e) {
+    showToast("Error updating status", "error");
+  }
+}
+
+async function verifyOtpPrompt(orderId) {
+  const otp = document.getElementById(`delivery-otp-${orderId}`)?.value.trim() || "";
+  if (!/^\d{6}$/.test(otp)) {
+    showToast("Enter the 6-digit OTP emailed to the customer", "error");
+    return;
+  }
+  try {
+    const res = await fetch(API_BASE + "/api/orders/verify-otp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...getAuthHeader() },
+      body: JSON.stringify({ orderId, otp })
+    });
+    const d = await res.json();
+    showToast(d.msg, res.ok ? "success" : "error");
+    if (res.ok) loadOrders();
+  } catch (e) {
+    showToast("Verification failed", "error");
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+[
+  {
+    "_id": "6ae0b71a1bf60b6a25a9e119",
+    "createdAt": "2026-10-27T14:37:14.454Z",
+    "userId": "6ae0a4931bf60b6a25a9e116",
+    "customerName": "javed",
+    "phone": "9024638533",
+    "address": "good product for by and pleace safely deleverd",
+    "city": "jofhpur",
+    "pincode": "342013",
+    "state": "",
+    "items": [
+      {
+        "productId": "660000000000000000000102",
+        "name": "Vintage Oversized Washed Graphic Tee",
+        "price": 999,
+        "image": "/uploads/1780391998718-file_0000000010fc7208a364e7f2772b67be.png",
+        "qty": 1,
+        "size": "XL",
+        "color": "Sage Green"
+      }
+    ],
+    "totalAmount": 999,
+    "status": "Confirmed",
+    "paymentMethod": "COD",
+    "paymentStatus": "Pending",
+    "deliveryOtp": "342466",
+    "otpVerified": false,
+    "name": "Vintage Oversized Washed Graphic Tee",
+    "price": 999,
+    "image": "/uploads/1780391998718-file_0000000010fc7208a364e7f2772b67be.png",
+    "size": "XL",
+    "color": "Sage Green",
+    "qty": 1,
+    "subtotal": 999,
+    "shippingFee": 0,
+    "discount": 0,
+    "email": "a24764848@gmail.com",
+    "location": "Indon ki Dhani, Bawarli, Balesar Tehsil, Jodhpur, Rajasthan, India",
+    "paymentDetails": {}
+  },
+  {
+    "_id": "6ae352c5a63253cd622e4aea",
+    "createdAt": "2026-10-29T14:05:57.700Z",
+    "userId": "6a65cc8df43cdad132eadf52",
+    "customerName": "javed",
+    "phone": "9024638533",
+    "address": "sangriya fanta",
+    "city": "jofhpur",
+    "pincode": "342013",
+    "state": "",
+    "items": [
+      {
+        "productId": "660000000000000000000103",
+        "name": "Urban Tactical Multi-Pocket Cargo Pants",
+        "price": 2199,
+        "image": "/uploads/1780399038411-IMG_20251127_110610.jpg",
+        "qty": 1,
+        "size": "M",
+        "color": "Default"
+      }
+    ],
+    "totalAmount": 2199,
+    "status": "Confirmed",
+    "paymentMethod": "COD",
+    "paymentStatus": "Pending",
+    "deliveryOtp": "123870",
+    "otpVerified": false,
+    "name": "Urban Tactical Multi-Pocket Cargo Pants",
+    "price": 2199,
+    "image": "/uploads/1780399038411-IMG_20251127_110610.jpg",
+    "size": "M",
+    "color": "Default",
+    "qty": 1,
+    "subtotal": 2199,
+    "shippingFee": 0,
+    "discount": 0,
+    "email": "a24764848@gmail.com",
+    "location": "Jodhpur, Jodhpur Tehsil, Jodhpur, Rajasthan, 342001, India",
+    "paymentDetails": {}
+  }
+]
