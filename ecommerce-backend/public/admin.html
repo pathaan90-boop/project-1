@@ -842,6 +842,21 @@
             transition: var(--transition-smooth);
         }
 
+        .filter-count {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 18px;
+            height: 18px;
+            margin-left: 4px;
+            padding: 0 5px;
+            border-radius: var(--radius-pill);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
         .filter-pill:hover {
             color: #ffffff;
             border-color: rgba(255, 255, 255, 0.15);
@@ -1807,13 +1822,14 @@
                     </div>
 
                     <div class="filter-pills" id="orderStatusFilters">
-                        <button class="filter-pill active" onclick="setOrderFilter('All', this)">All Orders</button>
-                        <button class="filter-pill" onclick="setOrderFilter('Pending', this)">Pending</button>
-                        <button class="filter-pill" onclick="setOrderFilter('Confirmed', this)">Confirmed</button>
-                        <button class="filter-pill" onclick="setOrderFilter('Packed', this)">Packed</button>
-                        <button class="filter-pill" onclick="setOrderFilter('Shipped', this)">Shipped</button>
-                        <button class="filter-pill" onclick="setOrderFilter('Delivered', this)">Delivered</button>
-                        <button class="filter-pill" onclick="setOrderFilter('Cancelled', this)">Cancelled</button>
+                        <button class="filter-pill active" onclick="setOrderFilter('All', this)">All Orders <span class="filter-count" data-order-count="All">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Pending', this)">Pending <span class="filter-count" data-order-count="Pending">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Confirmed', this)">Confirmed <span class="filter-count" data-order-count="Confirmed">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Packed', this)">Packed <span class="filter-count" data-order-count="Packed">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Shipped', this)">Shipped <span class="filter-count" data-order-count="Shipped">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Delivered', this)">Delivered <span class="filter-count" data-order-count="Delivered">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Cancelled', this)">Cancelled <span class="filter-count" data-order-count="Cancelled">0</span></button>
+                        <button class="filter-pill" onclick="setOrderFilter('Return', this)">Return <span class="filter-count" data-order-count="Return">0</span></button>
                     </div>
                 </div>
 
@@ -2461,6 +2477,32 @@
             renderOrdersTable();
         }
 
+        function updateOrderFilterCounts() {
+            const counts = {
+                All: cachedOrders.length,
+                Pending: 0,
+                Confirmed: 0,
+                Packed: 0,
+                Shipped: 0,
+                Delivered: 0,
+                Cancelled: 0,
+                Return: 0
+            };
+
+            cachedOrders.forEach(order => {
+                const status = String(order.status || "").toLowerCase();
+                const matchingStatus = Object.keys(counts).find(key => key !== "All" && key !== "Return" && key.toLowerCase() === status);
+                const hasReturnRequest = Array.isArray(order.returnRequests) && order.returnRequests.length > 0;
+                if (matchingStatus && !(matchingStatus === "Delivered" && hasReturnRequest)) counts[matchingStatus]++;
+                if (hasReturnRequest) counts.Return++;
+            });
+
+            Object.entries(counts).forEach(([filter, count]) => {
+                const badge = document.querySelector(`[data-order-count="${filter}"]`);
+                if (badge) badge.textContent = count;
+            });
+        }
+
         function renderReturnRequests(order) {
             const requests = Array.isArray(order.returnRequests) ? order.returnRequests : [];
             if (!requests.length) return "";
@@ -2535,10 +2577,15 @@
             const container = document.getElementById("ordersFullList");
             if (!container) return;
 
+            updateOrderFilterCounts();
             const searchQuery = (document.getElementById("orderSearchInput")?.value || "").toLowerCase().trim();
 
             let filtered = cachedOrders.filter(o => {
-                const matchStatus = activeOrderFilter === "All" || (o.status && o.status.toLowerCase() === activeOrderFilter.toLowerCase());
+                const matchStatus = activeOrderFilter === "All" ||
+                    (activeOrderFilter === "Return"
+                        ? Array.isArray(o.returnRequests) && o.returnRequests.length > 0
+                        : (o.status && o.status.toLowerCase() === activeOrderFilter.toLowerCase() &&
+                            !(activeOrderFilter === "Delivered" && Array.isArray(o.returnRequests) && o.returnRequests.length > 0)));
                 const matchSearch = !searchQuery || 
                     (o._id && String(o._id).toLowerCase().includes(searchQuery)) ||
                     (o.customerName && o.customerName.toLowerCase().includes(searchQuery)) ||
