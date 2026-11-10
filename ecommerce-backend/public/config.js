@@ -1,9 +1,8 @@
 // Pathaan Collection - Global Frontend Configuration
 
-// Automatically resolve API_BASE based on hosting environment
-let API_BASE = window.location.origin;
+let API_BASE = "https://pathaan-backend.vercel.app";
 
-// If served via VS Code Live Server (5500), Vite (5173), React (3000), or file://
+// Local development
 if (
     window.location.protocol === "file:" ||
     window.location.port === "5500" ||
@@ -14,7 +13,7 @@ if (
     API_BASE = "http://localhost:5000";
 }
 
-// User-specified override if backend is hosted on cloud/remote
+// Optional backend override
 if (localStorage.getItem("BACKEND_URL")) {
     API_BASE = localStorage.getItem("BACKEND_URL").replace(/\/$/, "");
 }
