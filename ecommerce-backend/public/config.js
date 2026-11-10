@@ -1,6 +1,6 @@
 // Pathaan Collection - Global Frontend Configuration
 
-let API_BASE = "https://pathaan-backend.vercel.app";
+let API_BASE = window.location.origin;
 
 // Local development
 if (

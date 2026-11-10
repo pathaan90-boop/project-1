@@ -15,11 +15,11 @@ function configureCloudinary() {
     });
 }
 
-function uploadProductImage(file) {
+function uploadImage(file, folder) {
     configureCloudinary();
     return new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
-            { folder: "pathaan/products", resource_type: "image" },
+            { folder, resource_type: "image" },
             (error, result) => {
                 if (error) return reject(error);
                 if (!result) return reject(new Error("Cloudinary returned no upload result"));
@@ -37,6 +37,14 @@ function uploadProductImage(file) {
         );
         Readable.from(file.buffer).pipe(uploadStream);
     });
+}
+
+function uploadProductImage(file) {
+    return uploadImage(file, "pathaan/products");
+}
+
+function uploadProfileImage(file) {
+    return uploadImage(file, "pathaan/profiles").then(asset => asset.url);
 }
 
 async function uploadProductImages(files) {
@@ -95,6 +103,7 @@ async function deleteCloudinaryImages(imageUrls) {
 
 module.exports = {
     uploadProductImages,
+    uploadProfileImage,
     deleteCloudinaryAssets,
     deleteCloudinaryImages
 };

@@ -7,7 +7,7 @@ if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-const profileStorage = multer.diskStorage({
+const profileDiskStorage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, uploadDir);
     },
@@ -17,6 +17,8 @@ const profileStorage = multer.diskStorage({
         cb(null, Date.now() + "-" + cleanName);
     }
 });
+
+const profileStorage = process.env.VERCEL ? multer.memoryStorage() : profileDiskStorage;
 
 const fileFilter = (req, file, cb) => {
     const allowed = /jpeg|jpg|png|webp|gif/;

@@ -55,11 +55,11 @@ mongoose.connect(MONGO_URI, {
         } catch (err) {
             console.error("Could not seed the menswear catalog into MongoDB:", err);
         }
-        startOrderConfirmationScheduler();
+        if (!process.env.VERCEL) startOrderConfirmationScheduler();
     })
     .catch(err => {
         console.error("MongoDB connection failed; using local JSON storage fallback:", err.message);
-        startOrderConfirmationScheduler();
+        if (!process.env.VERCEL) startOrderConfirmationScheduler();
     });
 
 function startOrderConfirmationScheduler() {
@@ -93,6 +93,27 @@ app.get("/api/health", (req, res) => {
     });
 });
 
+app.get("/api/cron/confirm-expired-orders", async (req, res) => {
+    const cronSecret = process.env.CRON_SECRET;
+    if (!cronSecret) {
+        return res.status(503).json({ msg: "Order confirmation cron is not configured" });
+    }
+    if (req.get("authorization") !== `Bearer ${cronSecret}`) {
+        return res.status(401).json({ msg: "Unauthorized" });
+    }
+    if (mongoose.connection.readyState !== 1) {
+        return res.status(503).json({ msg: "Database is not connected" });
+    }
+
+    try {
+        const confirmedCount = await confirmExpiredPendingOrders();
+        res.json({ confirmedCount });
+    } catch (err) {
+        console.error("Scheduled order confirmation failed:", err);
+        res.status(500).json({ msg: "Scheduled order confirmation failed" });
+    }
+});
+
 // Clean frontend page routes (supports both /page and /page.html)
 const publicDir = path.join(__dirname, "public");
 app.get("/", (req, res) => res.sendFile(path.join(publicDir, "shop.html")));
@@ -124,5 +145,9 @@ app.use((req, res, next) => {
     res.status(404).json({ msg: "Endpoint not found" });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Pathaan Collection server running on http://localhost:${PORT}`));
+if (!process.env.VERCEL) {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`🚀 Pathaan Collection server running on http://localhost:${PORT}`));
+}
+
+module.exports = app;

@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const { profile: upload } = require("../middleware/upload");
 const router = express.Router();
+const { uploadProfileImage } = require("../services/cloudinary");
 
 const User = require("../models/User");
 const auth = require("../middleware/auth");
@@ -263,7 +264,9 @@ router.post("/image", auth, (req, res, next) => {
             return res.status(404).json({ msg: "User not found" });
         }
 
-        user.profileImage = `/uploads/${req.file.filename}`;
+        user.profileImage = req.file.buffer
+            ? await uploadProfileImage(req.file)
+            : `/uploads/${req.file.filename}`;
         await user.save();
 
         res.json({
