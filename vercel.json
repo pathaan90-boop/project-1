@@ -2,21 +2,24 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "backend/server.js",
       "use": "@vercel/node"
     }
   ],
+  "installCommand": "npm --prefix backend ci",
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "backend/server.js"
     }
   ],
   "functions": {
-    "server.js": {
+    "backend/server.js": {
       "includeFiles": [
-        "public/**",
-        "uploads/**"
+        "frontend/**",
+        "admin/**",
+        "backend/data/**",
+        "backend/uploads/**"
       ]
     }
   }

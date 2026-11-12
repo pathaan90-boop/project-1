@@ -16,6 +16,8 @@ const uploadsPath = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsPath)) {
     fs.mkdirSync(uploadsPath, { recursive: true });
 }
+const frontendDir = path.join(__dirname, "..", "frontend");
+const adminDir = path.join(__dirname, "..", "admin");
 
 // CORS & Body parser
 app.use(cors());
@@ -24,7 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static assets
 app.use("/uploads", express.static(uploadsPath));
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/admin", express.static(adminDir));
+app.use(express.static(frontendDir));
 
 // Rate limiter for auth routes (100 requests / 15 mins)
 const authLimiter = rateLimit({
@@ -115,32 +118,32 @@ app.get("/api/cron/confirm-expired-orders", async (req, res) => {
 });
 
 // Clean frontend page routes (supports both /page and /page.html)
-const publicDir = path.join(__dirname, "public");
-app.get("/", (req, res) => res.sendFile(path.join(publicDir, "shop.html")));
-app.get("/shop", (req, res) => res.sendFile(path.join(publicDir, "shop.html")));
-app.get("/intro", (req, res) => res.sendFile(path.join(publicDir, "index.html")));
-app.get("/cart", (req, res) => res.sendFile(path.join(publicDir, "cart.html")));
-app.get("/checkout", (req, res) => res.sendFile(path.join(publicDir, "contact.html")));
-app.get("/contact", (req, res) => res.sendFile(path.join(publicDir, "contact.html")));
-app.get("/payment", (req, res) => res.sendFile(path.join(publicDir, "payment.html")));
-app.get("/orders", (req, res) => res.sendFile(path.join(publicDir, "orders.html")));
-app.get("/my-orders", (req, res) => res.sendFile(path.join(publicDir, "my-orders.html")));
-app.get("/profile", (req, res) => res.sendFile(path.join(publicDir, "profile.html")));
-app.get("/settings", (req, res) => res.sendFile(path.join(publicDir, "settings.html")));
-app.get("/dashboard", (req, res) => res.sendFile(path.join(publicDir, "dashboard.html")));
-app.get("/login", (req, res) => res.sendFile(path.join(publicDir, "login.html")));
-app.get("/register", (req, res) => res.sendFile(path.join(publicDir, "register.html")));
-app.get("/admin", (req, res) => res.sendFile(path.join(publicDir, "admin.html")));
-app.get("/product-details", (req, res) => res.sendFile(path.join(publicDir, "product-details.html")));
-app.get("/about", (req, res) => res.sendFile(path.join(publicDir, "about.html")));
-app.get("/faq", (req, res) => res.sendFile(path.join(publicDir, "faq.html")));
-app.get("/policy", (req, res) => res.sendFile(path.join(publicDir, "policy.html")));
-app.get("/terms", (req, res) => res.sendFile(path.join(publicDir, "terms.html")));
+app.get("/", (req, res) => res.sendFile(path.join(frontendDir, "shop.html")));
+app.get("/shop", (req, res) => res.sendFile(path.join(frontendDir, "shop.html")));
+app.get("/intro", (req, res) => res.sendFile(path.join(frontendDir, "index.html")));
+app.get("/cart", (req, res) => res.sendFile(path.join(frontendDir, "cart.html")));
+app.get("/checkout", (req, res) => res.sendFile(path.join(frontendDir, "contact.html")));
+app.get("/contact", (req, res) => res.sendFile(path.join(frontendDir, "contact.html")));
+app.get("/payment", (req, res) => res.sendFile(path.join(frontendDir, "payment.html")));
+app.get("/orders", (req, res) => res.sendFile(path.join(frontendDir, "orders.html")));
+app.get("/my-orders", (req, res) => res.sendFile(path.join(frontendDir, "my-orders.html")));
+app.get("/profile", (req, res) => res.sendFile(path.join(frontendDir, "profile.html")));
+app.get("/settings", (req, res) => res.sendFile(path.join(frontendDir, "settings.html")));
+app.get("/dashboard", (req, res) => res.sendFile(path.join(frontendDir, "dashboard.html")));
+app.get("/login", (req, res) => res.sendFile(path.join(frontendDir, "login.html")));
+app.get("/register", (req, res) => res.sendFile(path.join(frontendDir, "register.html")));
+app.get("/admin", (req, res) => res.sendFile(path.join(adminDir, "index.html")));
+app.get("/admin.html", (req, res) => res.sendFile(path.join(adminDir, "index.html")));
+app.get("/product-details", (req, res) => res.sendFile(path.join(frontendDir, "product-details.html")));
+app.get("/about", (req, res) => res.sendFile(path.join(frontendDir, "about.html")));
+app.get("/faq", (req, res) => res.sendFile(path.join(frontendDir, "faq.html")));
+app.get("/policy", (req, res) => res.sendFile(path.join(frontendDir, "policy.html")));
+app.get("/terms", (req, res) => res.sendFile(path.join(frontendDir, "terms.html")));
 
 // 404 handler for unknown routes
 app.use((req, res, next) => {
     if (req.accepts("html")) {
-        return res.status(404).sendFile(path.join(publicDir, "shop.html"));
+        return res.status(404).sendFile(path.join(frontendDir, "shop.html"));
     }
     res.status(404).json({ msg: "Endpoint not found" });
 });

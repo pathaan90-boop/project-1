@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "cd ecommerce-backend && npm start",
-    "dev": "cd ecommerce-backend && npm start",
-    "backend": "cd ecommerce-backend && npm start",
+    "start": "npm --prefix backend start",
+    "dev": "npm --prefix backend run dev",
+    "backend": "npm --prefix backend start",
     "test": "echo \"No root-level tests configured\""
   },
   "keywords": ["luxury", "beauty", "fashion", "ecommerce"],
