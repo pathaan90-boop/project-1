@@ -1523,18 +1523,80 @@
             }
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-toggle:hover {
+            border-color: var(--border-gold);
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 2px;
+            background: currentColor;
+            margin: 2px 0;
+        }
+
+        .sidebar-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .sidebar-backdrop.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: inline-flex;
+                flex-direction: column;
+            }
             .sidebar {
                 transform: translateX(-100%);
+                box-shadow: 12px 0 30px rgba(0, 0, 0, 0.32);
             }
             .sidebar.open {
                 transform: translateX(0);
+            }
+            .sidebar-backdrop {
+                display: block;
             }
             .main-wrapper {
                 margin-left: 0;
             }
             .top-header {
                 padding: 0 18px;
+            }
+            .breadcrumb {
+                flex: 1;
+                min-width: 0;
+            }
+            .breadcrumb-current {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
             .content-container {
                 padding: 20px 16px;
@@ -1659,10 +1721,17 @@
         </div>
     </aside>
 
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
     <!-- ================= MAIN APP WRAPPER ================= -->
     <main class="main-wrapper">
         <!-- TOP HEADER -->
         <header class="top-header">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="breadcrumb">
                 <span class="breadcrumb-root">Atelier Management</span>
                 <span class="breadcrumb-sep">/</span>
@@ -2148,6 +2217,23 @@
             renderClientsTable();
         }
 
+        function setSidebarOpen(isOpen) {
+            const sidebar = document.getElementById("sidebar");
+            const backdrop = document.getElementById("sidebarBackdrop");
+            const toggle = document.getElementById("mobileMenuToggle");
+            if (!sidebar || !backdrop || !toggle) return;
+
+            sidebar.classList.toggle("open", isOpen);
+            backdrop.classList.toggle("visible", isOpen);
+            toggle.setAttribute("aria-expanded", String(isOpen));
+        }
+
+        function closeSidebarOnMobile() {
+            if (window.innerWidth <= 768) {
+                setSidebarOpen(false);
+            }
+        }
+
         // Switch Tabs
         function switchTab(tabKey) {
             document.querySelectorAll(".sidebar-nav .nav-item").forEach(item => item.classList.remove("active"));
@@ -2171,7 +2257,30 @@
                 if (navItems[info.index]) navItems[info.index].classList.add("active");
                 document.getElementById("headerBreadcrumb").textContent = info.text;
             }
+
+            closeSidebarOnMobile();
         }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.getElementById("sidebar");
+            const toggle = document.getElementById("mobileMenuToggle");
+            const backdrop = document.getElementById("sidebarBackdrop");
+
+            if (toggle) {
+                toggle.addEventListener("click", () => {
+                    const isOpen = !sidebar.classList.contains("open");
+                    setSidebarOpen(isOpen);
+                });
+            }
+
+            if (backdrop) {
+                backdrop.addEventListener("click", () => setSidebarOpen(false));
+            }
+
+            document.querySelectorAll(".sidebar-nav .nav-item").forEach(item => {
+                item.addEventListener("click", () => closeSidebarOnMobile());
+            });
+        });
 
         // Display Toast Notification
         function showNotification(msg, type = "success") {
