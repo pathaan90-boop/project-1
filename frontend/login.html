@@ -221,11 +221,6 @@ button.submit-btn:disabled{
 const urlParams = new URLSearchParams(window.location.search);
 const redirectUrl = urlParams.get("redirect") || "";
 
-// If already logged in, redirect to shop or target
-if (isLoggedIn()) {
-    window.location.href = redirectUrl || "/shop";
-}
-
 async function login() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
@@ -236,6 +231,9 @@ async function login() {
         return;
     }
 
+    ["token", "isAdmin", "userEmail", "userName", "userPhone", "userAddress", "userAvatar"].forEach(key => {
+        localStorage.removeItem(key);
+    });
     btn.disabled = true;
     btn.innerText = "LOGGING IN...";
 
