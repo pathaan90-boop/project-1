@@ -36,3 +36,5 @@ Required production environment variables:
 Add email/SMTP, Google OAuth, and payment-provider variables from `backend/.env.example` when those features are enabled. Configure provider callback URLs for the deployed domain.
 
 Vercel's function filesystem is ephemeral. Product uploads use Cloudinary, and profile uploads use Cloudinary on Vercel. For automatic order confirmation, configure a Vercel Cron job to call `/api/cron/confirm-expired-orders` every five minutes; this cadence requires a Vercel plan that supports it.
+
+On Vercel, API requests wait for MongoDB and return `503` when `MONGO_URI` is missing or the database cannot connect. Check `/api/health`; its `database` field must be `mongodb` before testing data writes.

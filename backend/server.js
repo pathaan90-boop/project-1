@@ -37,33 +37,47 @@ const authLimiter = rateLimit({
 });
 
 // Database connection
-const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/pathaan_collection";
-mongoose.connect(MONGO_URI, {
-    serverSelectionTimeoutMS: 10000,
-    connectTimeoutMS: 10000
-})
-    .then(async () => {
-        console.log("MongoDB Connected Successfully 🔥");
-        try {
-            const ProductModel = mongoose.model("Product");
-            const existingProducts = await ProductModel.find({
-                _id: { $in: menswearProducts.map(product => product._id) }
-            }).select("_id").lean();
-            const existingProductIds = new Set(existingProducts.map(product => String(product._id)));
-            const missingProducts = menswearProducts.filter(product => !existingProductIds.has(product._id));
-            if (missingProducts.length > 0) {
-                await ProductModel.insertMany(missingProducts, { ordered: false });
-            }
-            console.log(`Menswear catalog ready (${missingProducts.length} products added).`);
-        } catch (err) {
-            console.error("Could not seed the menswear catalog into MongoDB:", err);
-        }
-        if (!process.env.VERCEL) startOrderConfirmationScheduler();
+const MONGO_URI = process.env.MONGO_URI || (
+    process.env.VERCEL ? "" : "mongodb://127.0.0.1:27017/pathaan_collection"
+);
+let databaseConnection = null;
+
+if (!MONGO_URI) {
+    console.error("MONGO_URI is required to use the database on Vercel.");
+} else {
+    databaseConnection = mongoose.connect(MONGO_URI, {
+        serverSelectionTimeoutMS: 10000,
+        connectTimeoutMS: 10000
     })
-    .catch(err => {
-        console.error("MongoDB connection failed; using local JSON storage fallback:", err.message);
-        if (!process.env.VERCEL) startOrderConfirmationScheduler();
-    });
+        .then(async () => {
+            console.log("MongoDB Connected Successfully 🔥");
+            try {
+                const ProductModel = mongoose.model("Product");
+                const existingProducts = await ProductModel.find({
+                    _id: { $in: menswearProducts.map(product => product._id) }
+                }).select("_id").lean();
+                const existingProductIds = new Set(existingProducts.map(product => String(product._id)));
+                const missingProducts = menswearProducts.filter(product => !existingProductIds.has(product._id));
+                if (missingProducts.length > 0) {
+                    await ProductModel.insertMany(missingProducts, { ordered: false });
+                }
+                console.log(`Menswear catalog ready (${missingProducts.length} products added).`);
+            } catch (err) {
+                console.error("Could not seed the menswear catalog into MongoDB:", err);
+            }
+            if (!process.env.VERCEL) startOrderConfirmationScheduler();
+        })
+        .catch(err => {
+            console.error("MongoDB connection failed:", err.message);
+            if (!process.env.VERCEL) {
+                console.error("Using local JSON storage fallback.");
+                startOrderConfirmationScheduler();
+                return false;
+            }
+            throw err;
+        });
+    databaseConnection.catch(() => {});
+}
 
 function startOrderConfirmationScheduler() {
     const confirmExpiredOrders = () => {
@@ -78,6 +92,23 @@ function startOrderConfirmationScheduler() {
 }
 
 // API Routes
+app.use("/api", async (req, res, next) => {
+    if (!process.env.VERCEL || req.path === "/health") {
+        return next();
+    }
+    if (!MONGO_URI || !databaseConnection) {
+        return res.status(503).json({ msg: "Database is not configured. Set MONGO_URI in Vercel." });
+    }
+    try {
+        await databaseConnection;
+        if (mongoose.connection.readyState !== 1) {
+            return res.status(503).json({ msg: "Database is not connected. Check the Vercel function logs." });
+        }
+        next();
+    } catch (err) {
+        res.status(503).json({ msg: "Database connection failed. Check MONGO_URI and MongoDB Atlas network access." });
+    }
+});
 app.use("/api/auth", authLimiter, require("./routes/auth"));
 app.use("/api/products", require("./routes/products"));
 app.use("/api/orders", require("./routes/orders"));
@@ -91,7 +122,9 @@ app.get("/api/health", (req, res) => {
     res.json({
         status: "online",
         service: "Pathaan Collection API",
-        database: mongoose.connection.readyState === 1 ? "mongodb" : "local_storage",
+        database: mongoose.connection.readyState === 1
+            ? "mongodb"
+            : process.env.VERCEL ? "unavailable" : "local_storage",
         timestamp: new Date()
     });
 });
